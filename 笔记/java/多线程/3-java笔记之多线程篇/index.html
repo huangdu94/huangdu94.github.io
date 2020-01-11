@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="__-Vjo92zHgw9dLBG8IX8oIOVE3kK7u5qo2i4Ci_J5I">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="6U55PJhsKw">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-knj.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32×32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16×16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo-knj.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java笔记,多线程,生产者和消费者模型,线程同步问题,volatile,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="黄渡的个人博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="二十、多线程编程1. 线程基本知识 线程与进程 进程：程序的一次动态执行过程 线程：轻量级的进程，线程本身不能单独运行，必须放在一个进程中才能执行   java的线程模型(线程五种状态) 新建状态(New) 线程被创建之后便处于新建状态   就绪状态(Runnable) 新建状态的线程调用start()进入就绪状态 阻塞状态的线程解除阻塞之后进入就绪状态   运行状态(Running) 处于就绪状">
+<meta name="keywords" content="java笔记,多线程,生产者和消费者模型,线程同步问题,volatile">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java笔记之多线程篇">
+<meta property="og:url" content="https://huangdu94.club/笔记/java/多线程/3-java笔记之多线程篇/index.html">
+<meta property="og:site_name" content="黄渡的个人博客">
+<meta property="og:description" content="二十、多线程编程1. 线程基本知识 线程与进程 进程：程序的一次动态执行过程 线程：轻量级的进程，线程本身不能单独运行，必须放在一个进程中才能执行   java的线程模型(线程五种状态) 新建状态(New) 线程被创建之后便处于新建状态   就绪状态(Runnable) 新建状态的线程调用start()进入就绪状态 阻塞状态的线程解除阻塞之后进入就绪状态   运行状态(Running) 处于就绪状">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://huangdu94.club/images/blog/java%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BA%94%E7%A7%8D%E7%8A%B6%E6%80%81.jpg">
+<meta property="og:updated_time" content="2019-10-27T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java笔记之多线程篇">
+<meta name="twitter:description" content="二十、多线程编程1. 线程基本知识 线程与进程 进程：程序的一次动态执行过程 线程：轻量级的进程，线程本身不能单独运行，必须放在一个进程中才能执行   java的线程模型(线程五种状态) 新建状态(New) 线程被创建之后便处于新建状态   就绪状态(Runnable) 新建状态的线程调用start()进入就绪状态 阻塞状态的线程解除阻塞之后进入就绪状态   运行状态(Running) 处于就绪状">
+<meta name="twitter:image" content="https://huangdu94.club/images/blog/java%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BA%94%E7%A7%8D%E7%8A%B6%E6%80%81.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://huangdu94.club/笔记/java/多线程/3-java笔记之多线程篇/">
+
+
+
+
+
+  <title>java笔记之多线程篇 | 黄渡的个人博客</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-150743323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ed9546015e2b473efc6b228c883dbe12";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黄渡的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">记录一个程序员的成长轨迹</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-java">
+          <a href="/categories/笔记/java/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            java
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-数据库">
+          <a href="/categories/笔记/database/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            数据库
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-操作系统">
+          <a href="/categories/笔记/OS/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            操作系统
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangdu94.club/笔记/java/多线程/3-java笔记之多线程篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黄渡">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar-knj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄渡的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java笔记之多线程篇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-28T00:00:00+08:00">
+                2019-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/java/多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/笔记/java/多线程/3-java笔记之多线程篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/笔记/java/多线程/3-java笔记之多线程篇/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/笔记/java/多线程/3-java笔记之多线程篇/" class="leancloud_visitors" data-flag-title="java笔记之多线程篇">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.4k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="二十、多线程编程"><a href="#二十、多线程编程" class="headerlink" title="二十、多线程编程"></a>二十、多线程编程</h2><h3 id="1-线程基本知识"><a href="#1-线程基本知识" class="headerlink" title="1. 线程基本知识"></a>1. 线程基本知识</h3><ul>
+<li>线程与进程<ul>
+<li>进程：程序的一次动态执行过程</li>
+<li>线程：轻量级的进程，线程本身不能单独运行，必须放在一个进程中才能执行</li>
+</ul>
+</li>
+<li>java的线程模型(线程五种状态)<br><img src="/images/blog/java%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BA%94%E7%A7%8D%E7%8A%B6%E6%80%81.jpg" alt="java线程的五种状态" title="java线程的五种状态"><ol>
+<li>新建状态(New)<ul>
+<li>线程被创建之后便处于新建状态</li>
+</ul>
+</li>
+<li>就绪状态(Runnable)<ul>
+<li>新建状态的线程调用<code>start()</code>进入就绪状态</li>
+<li>阻塞状态的线程解除阻塞之后进入就绪状态</li>
+</ul>
+</li>
+<li>运行状态(Running)<ul>
+<li>处于就绪状态的线程获得了CPU的资源，该线程就进入了运行状态</li>
+</ul>
+</li>
+<li>阻塞状态(Blocked)<ul>
+<li>是一个正在运行的线程，在某些特殊情况下让出CPU资源暂时中止而进入的状态</li>
+<li>人为挂起、需要运行耗时的输入或输出操作</li>
+<li><code>sleep()</code> <code>suspend()</code> <code>wait()</code></li>
+</ul>
+</li>
+<li>终止状态(Dead)<ul>
+<li>处于终止状态的线程不具有继续运行的能力</li>
+<li>正常终止</li>
+<li>强制终止：<code>stop()</code> <code>destroy()</code> <code>System.exit(0)</code></li>
+<li>异常终止：当线程执行过程中产生了异常，线程会终止</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-创建线程的方式"><a href="#2-创建线程的方式" class="headerlink" title="2. 创建线程的方式"></a>2. 创建线程的方式</h3><ol>
+<li>继承<code>Thread</code>类<ul>
+<li>继承<code>Thread</code>类，重写<code>run()</code>方法，调用<code>start()</code>方法执行线程</li>
+</ul>
+</li>
+<li>实现<code>Runnable</code>接口<ul>
+<li>实现<code>Runnable</code>接口，实现<code>run()</code>方法，作为参数构造<code>Thread</code>对象，调用<code>start()</code>方法执行线程</li>
+<li><code>Runnable</code>为函数接口支持Lambda表达式</li>
+</ul>
+</li>
+<li>实现<code>Callable</code>接口<ul>
+<li>实现<code>Callable</code>接口，实现<code>call()</code>方法，可以有返回值</li>
+<li><code>Callable</code>接口可以设置一个泛型，即<code>call()</code>方法返回数据类型</li>
+<li><code>FutureTask</code>类常用方法(其实现了<code>RunnableFuture</code>接口)<ul>
+<li><code>FutureTask(Callabel&lt;V&gt; c)</code> 接收<code>Callable</code>接口实例</li>
+<li><code>FutureTask(Runnable r, V r)</code> 接收<code>Runnable</code>接口实例，并指定返回结果类型</li>
+<li><code>V get()</code> 取得线程操作结果，此方法为<code>Future</code>接口定义</li>
+</ul>
+</li>
+<li>将<code>Callable</code>接口对象作为参数构造<code>FutureTask</code>对象，再将<code>FutureTask</code>对象作为参数构造<code>Thread</code>对象，调用<code>start()</code>方法执行线程</li>
+<li>当线程执行完毕后可调用<code>FutureTask</code>对象<code>get()</code>方法获取线程的执行结果</li>
+</ul>
+</li>
+<li><code>Thread</code> <code>Runnable</code> <code>Callable</code>的比较<ul>
+<li>因为java是单继承，继承<code>Thread</code>类限制较大</li>
+<li>从结构上说<code>Thread</code>描述的是线程对象，<code>Runnable</code>定义的是并发资源</li>
+<li><code>Runnable</code>是在jdk1.0后提出的，<code>Callable</code>是在jdk1.5后提出的</li>
+<li><code>Runnable</code>提供一个<code>run()</code>方法，并且没有返回值</li>
+<li><code>Callable</code>提供一个<code>call()</code>方法，可以有返回值(通过<code>Future</code>接口获取)</li>
+</ul>
+</li>
+<li>线程池<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService threadPool=Executors.newFixedThreadPool(<span class="number">2</span>);</span><br><span class="line">threadPool.execute(runn);<span class="comment">//runn是Runnable子类</span></span><br><span class="line">threadPool.shutdown();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="3-多个线程并发执行"><a href="#3-多个线程并发执行" class="headerlink" title="3. 多个线程并发执行"></a>3. 多个线程并发执行</h3><ul>
+<li>java对于线程启动后唯一能保证的是每个线程都被启动并且结束</li>
+<li>但是对于哪个线程先执行，哪个后执行，什么时候执行，是没有保证的</li>
+</ul>
+<h3 id="4-Thread常用方法"><a href="#4-Thread常用方法" class="headerlink" title="4. Thread常用方法"></a>4. <code>Thread</code>常用方法</h3><ol>
+<li><code>static Thread currentThread()</code> 可以获取运行该方法的线程</li>
+<li><strong>*</strong> <code>static void sleep(long ms)</code> 休眠方法，该方法可以将运行该方法的线程阻塞指定毫秒</li>
+<li><strong>*</strong> <code>static void yield()</code> 暂停方法，释放调用该方法的线程的CPU资源，大家一起来抢(包括自己)</li>
+<li><strong>*</strong> <code>void join()</code> 挂起方法，等待调用该方法的线程终止后再继续执行</li>
+<li><code>void setPriority(int newPriority)</code> 设置线程优先级，java中优先级高的线程有更大的可能性获得CPU，但不是优先级高的总是先执行，也不是优先级低的线程总是后执行</li>
+<li><code>void setDaemon(boolean on)</code> 设置守护线程(后台线程)，当一个进程中的所有前台进程都结束时，进程结束，无论该进程中的守护线程是否还在运行都要强制将它们结束(GC线程就属于一个守护线程)</li>
+<li>其它<code>getId()</code> <code>getName()</code> <code>getPriority()</code> <code>isDaemon()</code> <code>isAlive()</code> <code>isInterrupted()</code> <code>start()</code> <code>interrupt()</code></li>
+<li><strong>*</strong> 为线程调度三个方法</li>
+</ol>
+<h3 id="5-线程同步问题的由来"><a href="#5-线程同步问题的由来" class="headerlink" title="5. 线程同步问题的由来"></a>5. 线程同步问题的由来</h3><ul>
+<li>线程同步问题的由来<ul>
+<li>多个线程共享资源并没有进行控制</li>
+<li>当多个线程并发访问同一资源时，由于线程切换时机不确定导致执行代码顺序的混乱，从而出现执行未按程序设计顺序运行导致出现各种错误，严重时可能导致系统瘫痪</li>
+</ul>
+</li>
+<li>同步问题java的解决方案<ul>
+<li>同步方法<ul>
+<li><code>synchronized 方法声明{}</code></li>
+<li>当线程进入同步方法的时候，会获得同步方法所属对象的锁</li>
+<li>一旦获得对象锁，则其他线程不能再执行被锁对象的其他任何同步方法，只有在同步方法执行完毕之后释放了锁，其他线程才能继续执行</li>
+</ul>
+</li>
+<li>同步块(比同步方法更细粒度)<ul>
+<li><code>synchronized(资源对象){//需要进行同步的方法}</code></li>
+<li>当线程进入同步块的时候，会获得同步块所属对象的锁</li>
+<li>一旦获得对象锁，则其他线程不能再执行被锁对象的该同步块，只有在同步块执行完毕之后释放了锁，其他线程才能继续执行</li>
+</ul>
+</li>
+<li>使用<code>Lock</code>类<ul>
+<li>创建方法 <code>private Lock lock = new ReentrantLock();</code></li>
+<li>常用方法 <code>lock()</code> <code>tryLock()</code> <code>unlock()</code> <code>Condition</code> <code>newCondition()</code> <code>await()</code> <code>signal()</code> <code>signalAll()</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>StringBuiler</code>不是线程安全的，当多个线程操作同一个字符串时应当使用<code>StringBuffer</code></li>
+<li>常用的集合实现类：<code>ArrayList</code> <code>LinkedList</code> <code>HashSet</code>它们都不是线程安全的<ul>
+<li><code>Collections</code>可以将现有的集合转换为线程安全的</li>
+<li>例：<code>listName=Collections.synchronizedList(listName);</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="6-死锁问题"><a href="#6-死锁问题" class="headerlink" title="6. 死锁问题"></a>6. 死锁问题</h3><ul>
+<li>例：A线程需要申请资源1才能继续执行，而资源1被B线程所占有；B线程需要申请资源2才能继续执行，而资源2被A线程所占有</li>
+</ul>
+<h3 id="7-生产者和消费者模型"><a href="#7-生产者和消费者模型" class="headerlink" title="7. 生产者和消费者模型"></a>7. 生产者和消费者模型</h3><ul>
+<li><p>永远在<code>while</code>循环中对条件进行判断而不是<code>if</code>语句中进行<code>wait()</code>条件的判断</p>
+</li>
+<li><p>使用<code>notifyAll()</code>而不是使用<code>notify()</code></p>
+</li>
+<li><p>了解对象锁与类锁</p>
+</li>
+<li><p>使用同步块的生产者消费者模型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProducerConsumerDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; list=<span class="keyword">new</span> LinkedList();<span class="comment">//仓库</span></span><br><span class="line">        <span class="keyword">int</span> max=<span class="number">100</span>;<span class="comment">//仓库大小</span></span><br><span class="line">        Producer p=<span class="keyword">new</span> Producer(<span class="string">"生产者"</span>,max,list);</span><br><span class="line">        Consumer c=<span class="keyword">new</span> Consumer(<span class="string">"消费者"</span>,max,list);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(p::produce).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(c::consume).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 生产者</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Producer</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> max;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; list;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Producer</span><span class="params">(String userName,<span class="keyword">int</span> max,List&lt;Integer&gt; list)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userName=userName;</span><br><span class="line">        <span class="keyword">this</span>.max=max;</span><br><span class="line">        <span class="keyword">this</span>.list=list;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">produce</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (list)&#123;</span><br><span class="line">                <span class="keyword">while</span>(list.size()&gt;=max)&#123;</span><br><span class="line">                    System.out.println(<span class="string">"当前仓库产品数量:"</span>+list.size()+<span class="string">",仓库满了.生产者等待."</span>);</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        list.wait();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> product=(<span class="keyword">int</span>)(Math.random()*<span class="number">100</span>)+<span class="number">1</span>;</span><br><span class="line">                list.add(product);</span><br><span class="line">                System.out.println(<span class="keyword">this</span>.userName+<span class="string">"生产了产品:"</span>+product+<span class="string">",当前仓库产品数量:"</span>+list.size());</span><br><span class="line">                list.notifyAll();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 消费者</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Consumer</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> max;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; list;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Consumer</span><span class="params">(String userName,<span class="keyword">int</span> max,List&lt;Integer&gt; list)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userName=userName;</span><br><span class="line">        <span class="keyword">this</span>.max=max;</span><br><span class="line">        <span class="keyword">this</span>.list=list;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">consume</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (list)&#123;</span><br><span class="line">                <span class="keyword">while</span>(list.isEmpty())&#123;</span><br><span class="line">                    System.out.println(<span class="string">"仓库空了,消费者等待."</span>);</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        list.wait();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> goods=list.remove(<span class="number">0</span>);</span><br><span class="line">                System.out.println(<span class="keyword">this</span>.userName+<span class="string">"消费了商品:"</span>+goods+<span class="string">",当前仓库产品数量:"</span>+list.size());</span><br><span class="line">                list.notifyAll();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>Lock</code>类的生产者消费者模型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProducerConsumerDemo2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Lock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">        Condition empty = lock.newCondition();</span><br><span class="line">        Condition full = lock.newCondition();</span><br><span class="line">        List&lt;Integer&gt; list = <span class="keyword">new</span> LinkedList();<span class="comment">//仓库</span></span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">1000</span>;<span class="comment">//仓库大小</span></span><br><span class="line">        Producer2 p = <span class="keyword">new</span> Producer2(<span class="string">"生产者"</span>, max, list, lock, empty, full);</span><br><span class="line">        Consumer2 c = <span class="keyword">new</span> Consumer2(<span class="string">"消费者"</span>, max, list, lock, empty, full);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(p::produce).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(c::consume).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 生产者</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Producer2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> max;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; list;</span><br><span class="line">    <span class="keyword">private</span> Lock lock;</span><br><span class="line">    <span class="keyword">private</span> Condition empty;</span><br><span class="line">    <span class="keyword">private</span> Condition full;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Producer2</span><span class="params">(String userName, <span class="keyword">int</span> max, List&lt;Integer&gt; list, Lock lock, Condition empty, Condition full)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userName = userName;</span><br><span class="line">        <span class="keyword">this</span>.max = max;</span><br><span class="line">        <span class="keyword">this</span>.list = list;</span><br><span class="line">        <span class="keyword">this</span>.lock = lock;</span><br><span class="line">        <span class="keyword">this</span>.empty = empty;</span><br><span class="line">        <span class="keyword">this</span>.full = full;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">produce</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            lock.lock();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">while</span> (list.size() &gt;= max) &#123;</span><br><span class="line">                    System.out.println(<span class="string">"当前仓库产品数量:"</span> + list.size() + <span class="string">",仓库满了.生产者等待."</span>);</span><br><span class="line">                    full.await();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> product = (<span class="keyword">int</span>) (Math.random() * <span class="number">100</span>) + <span class="number">1</span>;</span><br><span class="line">                list.add(product);</span><br><span class="line">                System.out.println(<span class="keyword">this</span>.userName + <span class="string">"生产了产品:"</span> + product + <span class="string">",当前仓库产品数量:"</span> + list.size());</span><br><span class="line">                empty.signalAll();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                lock.unlock();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 消费者</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Consumer2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> max;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Integer&gt; list;</span><br><span class="line">    <span class="keyword">private</span> Lock lock;</span><br><span class="line">    <span class="keyword">private</span> Condition empty;</span><br><span class="line">    <span class="keyword">private</span> Condition full;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Consumer2</span><span class="params">(String userName, <span class="keyword">int</span> max, List&lt;Integer&gt; list, Lock lock, Condition empty, Condition full)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userName = userName;</span><br><span class="line">        <span class="keyword">this</span>.max = max;</span><br><span class="line">        <span class="keyword">this</span>.list = list;</span><br><span class="line">        <span class="keyword">this</span>.lock = lock;</span><br><span class="line">        <span class="keyword">this</span>.empty = empty;</span><br><span class="line">        <span class="keyword">this</span>.full = full;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">consume</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            lock.lock();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">while</span> (list.isEmpty()) &#123;</span><br><span class="line">                    System.out.println(<span class="string">"仓库空了,消费者等待."</span>);</span><br><span class="line">                    empty.await();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> goods = list.remove(<span class="number">0</span>);</span><br><span class="line">                System.out.println(<span class="keyword">this</span>.userName + <span class="string">"消费了商品:"</span> + goods + <span class="string">",当前仓库产品数量:"</span> + list.size());</span><br><span class="line">                full.signalAll();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                lock.unlock();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="8-优雅的停止线程"><a href="#8-优雅的停止线程" class="headerlink" title="8. 优雅的停止线程"></a>8. 优雅的停止线程</h3><ul>
+<li><code>suspend()</code> <code>resume()</code> <code>stop()</code> 三个方法从jdk1.2开始不推荐使用，因为会产生死锁问题</li>
+<li>优雅的停止一个线程<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StopThread</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">long</span> num = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (flag) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">50</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(num++);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br><span class="line">        <span class="comment">//如果想让线程停止只需要将flag设置为false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="9-volatile关键字"><a href="#9-volatile关键字" class="headerlink" title="9. volatile关键字"></a>9. <code>volatile</code>关键字</h3><ul>
+<li>多线程操作公共的普通变量时，往往是复制相应的副本，操作完成后再将此副本变量数据与原始变量进行同步处理</li>
+<li>使用<code>volatile</code>关键字声明变量，可以直接进行原始变量的操作</li>
+<li><code>volatile</code>关键字不是描述同步的操作，而是可以更快捷地进行原始变量的访问，避免了副本创建与数据同步处理</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="黄渡 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="黄渡 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    黄渡
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://huangdu94.club/笔记/java/多线程/3-java笔记之多线程篇/" title="java笔记之多线程篇">https://huangdu94.club/笔记/java/多线程/3-java笔记之多线程篇/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java笔记/" rel="tag"># java笔记</a>
+          
+            <a href="/tags/多线程/" rel="tag"># 多线程</a>
+          
+            <a href="/tags/生产者和消费者模型/" rel="tag"># 生产者和消费者模型</a>
+          
+            <a href="/tags/线程同步问题/" rel="tag"># 线程同步问题</a>
+          
+            <a href="/tags/volatile/" rel="tag"># volatile</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/笔记/java/面向对象/2-java笔记之面向对象篇/" rel="next" title="java笔记之面向对象篇">
+                <i class="fa fa-chevron-left"></i> java笔记之面向对象篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/笔记/java/反射机制/4-java笔记之反射机制篇/" rel="prev" title="java笔记之反射机制篇">
+                java笔记之反射机制篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar-knj.jpg" alt="黄渡">
+            
+              <p class="site-author-name" itemprop="name">黄渡</p>
+              <p class="site-description motion-element" itemprop="description">我喜欢敲代码。I like programming.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/huangdu94" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:445951954@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.csdn.net/" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.runoob.com/" title="菜鸟教程" target="_blank">菜鸟教程</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ke.qq.com/" title="腾讯课堂" target="_blank">腾讯课堂</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二十、多线程编程"><span class="nav-text">二十、多线程编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-线程基本知识"><span class="nav-text">1. 线程基本知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-创建线程的方式"><span class="nav-text">2. 创建线程的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-多个线程并发执行"><span class="nav-text">3. 多个线程并发执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Thread常用方法"><span class="nav-text">4. Thread常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-线程同步问题的由来"><span class="nav-text">5. 线程同步问题的由来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-死锁问题"><span class="nav-text">6. 死锁问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-生产者和消费者模型"><span class="nav-text">7. 生产者和消费者模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-优雅的停止线程"><span class="nav-text">8. 优雅的停止线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-volatile关键字"><span class="nav-text">9. volatile关键字</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黄渡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">网站字数统计&#58;</span>
+    
+    <span title="网站字数统计">37.5k 字</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 本站访问数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+    <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+ 
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+ 
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+ 
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+ 
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+ 
+        if(result)$(this).text('复制成功')
+        else $(this).text('复制失败')
+ 
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'wl3Y5n2pUmkCgexySUMfhC5p-gzGzoHsz',
+        appKey: '8Dl95838MCqN8BDVLl6Tcavu',
+        placeholder: '想对作者说点什么',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("wl3Y5n2pUmkCgexySUMfhC5p-gzGzoHsz", "8Dl95838MCqN8BDVLl6Tcavu");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/clicklove.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

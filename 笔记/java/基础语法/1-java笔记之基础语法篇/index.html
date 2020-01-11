@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="__-Vjo92zHgw9dLBG8IX8oIOVE3kK7u5qo2i4Ci_J5I">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="6U55PJhsKw">
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-knj.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32×32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16×16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo-knj.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java笔记,基础语法,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="黄渡的个人博客" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="一、java的基本元素 空白分隔符 空格 Tab键 换行符   关键字(不能用于变量名、类名、方法名等) 访问控制：private protected public 类、方法、变量修饰符：abstract class extends final implements interface native new static strictfp synchronized transient volati">
+<meta name="keywords" content="java笔记,基础语法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java笔记之基础语法篇">
+<meta property="og:url" content="https://huangdu94.club/笔记/java/基础语法/1-java笔记之基础语法篇/index.html">
+<meta property="og:site_name" content="黄渡的个人博客">
+<meta property="og:description" content="一、java的基本元素 空白分隔符 空格 Tab键 换行符   关键字(不能用于变量名、类名、方法名等) 访问控制：private protected public 类、方法、变量修饰符：abstract class extends final implements interface native new static strictfp synchronized transient volati">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-19T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java笔记之基础语法篇">
+<meta name="twitter:description" content="一、java的基本元素 空白分隔符 空格 Tab键 换行符   关键字(不能用于变量名、类名、方法名等) 访问控制：private protected public 类、方法、变量修饰符：abstract class extends final implements interface native new static strictfp synchronized transient volati">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://huangdu94.club/笔记/java/基础语法/1-java笔记之基础语法篇/">
+
+
+
+
+
+  <title>java笔记之基础语法篇 | 黄渡的个人博客</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-150743323-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ed9546015e2b473efc6b228c883dbe12";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">黄渡的个人博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">记录一个程序员的成长轨迹</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-java">
+          <a href="/categories/笔记/java/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            java
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-数据库">
+          <a href="/categories/笔记/database/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            数据库
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-操作系统">
+          <a href="/categories/笔记/OS/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            操作系统
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangdu94.club/笔记/java/基础语法/1-java笔记之基础语法篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黄渡">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar-knj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄渡的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java笔记之基础语法篇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+			
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-20T00:00:00+08:00">
+                2019-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/java/基础语法/" itemprop="url" rel="index">
+                    <span itemprop="name">基础语法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/笔记/java/基础语法/1-java笔记之基础语法篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/笔记/java/基础语法/1-java笔记之基础语法篇/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/笔记/java/基础语法/1-java笔记之基础语法篇/" class="leancloud_visitors" data-flag-title="java笔记之基础语法篇">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.6k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、java的基本元素"><a href="#一、java的基本元素" class="headerlink" title="一、java的基本元素"></a>一、java的基本元素</h2><ol>
+<li>空白分隔符<ul>
+<li>空格</li>
+<li>Tab键</li>
+<li>换行符</li>
+</ul>
+</li>
+<li>关键字<br>(不能用于变量名、类名、方法名等)<ul>
+<li>访问控制：<br><code>private</code> <code>protected</code> <code>public</code></li>
+<li>类、方法、变量修饰符：<br><code>abstract</code> <code>class</code> <code>extends</code> <code>final</code> <code>implements</code> <code>interface</code> <code>native</code> <code>new</code> <code>static</code> <code>strictfp</code> <code>synchronized</code> <code>transient</code> <code>volatile</code> <code>enum</code> <code>void</code> <code>var</code></li>
+<li>程序控制：<br><code>break</code> <code>continue</code> <code>return</code> <code>do</code> <code>while</code> <code>if</code> <code>else</code> <code>for</code> <code>instanceof</code> <code>switch</code> <code>case</code> <code>default</code></li>
+<li>异常处理：<br><code>try</code> <code>catch</code> <code>throw</code> <code>throws</code> <code>finally</code> <code>assert</code></li>
+<li>包相关：<br><code>import</code> <code>package</code></li>
+<li>基本类型：<br><code>byte</code> <code>short</code> <code>char</code> <code>int</code> <code>long</code> <code>float</code> <code>double</code> <code>boolean</code> (单独的标识类型：<code>null</code> <code>ture</code> <code>false</code>)</li>
+<li>变量引用：<br><code>super</code> <code>this</code></li>
+<li>保留字：<br><code>goto</code> <code>const</code></li>
+</ul>
+</li>
+<li>标识符<ul>
+<li>标识符是类、方法、变量的名字</li>
+<li>命名规则：<ul>
+<li>可以包含数字、字母、下划线<code>_</code>、美元符号<code>$</code>，但是不能以数字作为开头</li>
+<li>区分大小写</li>
+<li>关键字是不能用作标识符的</li>
+<li>可以使用中文，但不建议使用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>注释<ul>
+<li>单行注释：<code>//</code></li>
+<li>多行注释：<code>/* */</code></li>
+<li>文档注释：<code>/** */</code> (把关于程序的信息嵌入到程序内部，用javadoc工具来提取这些信息，形成帮助文档)</li>
+</ul>
+</li>
+<li>分隔符<ul>
+<li>除了注释和变量名可以出现中文之外(不建议中文变量名)，其它的地方一律是英文，各种标点符号也必须是英文状态下的</li>
+<li><code>()</code> <strong>圆括号</strong>   <ul>
+<li>定义方法的参数表</li>
+<li>条件语句、循环语句中的条件定义</li>
+<li>定义表达式的优先级</li>
+</ul>
+</li>
+<li><code>{}</code> <strong>花括号</strong>   <ul>
+<li>初始化数组</li>
+<li>定义程序块、类、方法</li>
+</ul>
+</li>
+<li><code>[]</code> <strong>方括号</strong>   <ul>
+<li>声明数组类型</li>
+</ul>
+</li>
+<li><code>;</code> <strong>分号</strong>  <ul>
+<li>表示一个语句的结束</li>
+</ul>
+</li>
+<li><code>,</code> <strong>逗号</strong>  <ul>
+<li>变量声明时用于分隔多个变量</li>
+</ul>
+</li>
+<li><code>.</code> <strong>点号</strong>  <ul>
+<li>用于软件包和子包分隔</li>
+<li>用于类、对象和变量、方法分隔</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、八大基本数据类型及数据类型转换"><a href="#二、八大基本数据类型及数据类型转换" class="headerlink" title="二、八大基本数据类型及数据类型转换"></a>二、八大基本数据类型及数据类型转换</h2><ol>
+<li>基本数据类型<ul>
+<li>整型<ul>
+<li><code>byte</code>    1字节 -128~127</li>
+<li><code>short</code>   2字节 -32768~32767</li>
+<li><code>int</code>     4字节 正负21亿多(用的最多)</li>
+<li><code>long</code>    8字节 特别大，当int不够用的时候，才会用long</li>
+</ul>
+</li>
+<li>字符型<ul>
+<li><code>char</code>    2字节 采用Unicode编码格式，支持中文</li>
+</ul>
+</li>
+<li>浮点型<ul>
+<li><code>float</code>   4字节 单精度</li>
+<li><code>double</code>  8字节 双精度(用的最多)</li>
+</ul>
+</li>
+<li>布尔型<ul>
+<li><code>boolean</code> 1字节 <code>true</code>真 <code>false</code>假</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>自动转换<ul>
+<li><code>byte</code> <code>short</code> <code>char</code> <strong>&gt;</strong> <code>int</code> <strong>&gt;</strong> <code>long</code> <strong>&gt;</strong> <code>float</code> <strong>&gt;</strong> <code>double</code> </li>
+<li>目的类型比原来的类型要大</li>
+<li>两种类型是相互兼容的</li>
+<li><code>byte</code> <code>short</code> <code>char</code> 计算时会自动转换为<code>int</code>类型</li>
+<li>对于<code>byte</code> <code>short</code> <code>char</code>类型赋值，只要常量不超过它们的范围可直接赋值</li>
+</ul>
+</li>
+<li>强制类型转换<ul>
+<li>(目标数据类型)目标</li>
+<li>浮点型转整型：把小数位截掉，保留整数位</li>
+<li>长整型赋给短整型：去位</li>
+<li>需要注意数据溢出</li>
+</ul>
+</li>
+</ol>
+<h2 id="三、变量和常量"><a href="#三、变量和常量" class="headerlink" title="三、变量和常量"></a>三、变量和常量</h2><ol>
+<li>java的变量  <ul>
+<li>值可以改变的量</li>
+<li>命名规则：<ul>
+<li>遵循标识符命名规则</li>
+<li>尽量使用有意义的单词</li>
+<li>一般首字母小写</li>
+<li>英文的见名知意、驼峰命名法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>java的常量  <ul>
+<li>值不能改变的量</li>
+<li>各类型直接常量不能超过它们的范围，否则编译报错</li>
+<li>定义常量  <ul>
+<li>使用final关键字</li>
+<li>习惯上常量都使用大写</li>
+</ul>
+</li>
+<li>整型直接常量<ul>
+<li>默认<code>int</code>类型</li>
+<li>前缀<code>0X</code> <code>0x</code>表示十六进制、<code>0</code>表示八进制、<code>0B</code> <code>0b</code>表示二进制</li>
+<li>后缀<code>L</code> <code>l</code>表示<code>long</code>类型</li>
+</ul>
+</li>
+<li>浮点型直接常量<ul>
+<li>默认<code>double</code>类型</li>
+<li>指数计数法<code>1.39E-43</code> <code>1.39e-43</code>表示<code>1.39×10^-43</code></li>
+<li>后缀<code>D</code> <code>d</code>表示<code>double</code>类型，<code>F</code> <code>f</code>表示<code>float</code>类型</li>
+</ul>
+</li>
+<li>字符型直接常量<ul>
+<li>直接形式：<code>&#39;A&#39;</code>(对于特殊字符需要转义，换行符<code>&#39;\n&#39;</code>)</li>
+<li>八进制形式：<code>&#39;\101&#39;</code></li>
+<li>十进制形式：<code>65</code>(<code>&#39;A&#39;</code>对应<code>65</code>，<code>&#39;a&#39;</code>对应<code>97</code>,<code>&#39;0&#39;</code>对应<code>48</code>)</li>
+<li>十六进制形式：<code>&#39;\u0041&#39;</code></li>
+</ul>
+</li>
+<li>布尔型直接常量<ul>
+<li><code>true</code>真 <code>false</code>假</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="四、赋值与初始化"><a href="#四、赋值与初始化" class="headerlink" title="四、赋值与初始化"></a>四、赋值与初始化</h2><ol>
+<li>赋值<ul>
+<li>是给变量指定一个值或者是改变一个变量的值</li>
+<li><code>int a = 100;</code>初始化 <code>a = 200;</code>赋值</li>
+</ul>
+</li>
+<li>初始化<ul>
+<li>局部变量：<ul>
+<li>在使用之前必须进行初始化(JDK1.4之前必须在声明时初始化)</li>
+</ul>
+</li>
+<li>实例变量和静态变量(类变量)：<ul>
+<li>编译器可以自动对它们进行初始化(<code>final</code>修饰的类变量必须初始化)</li>
+<li><code>byte</code> <code>short</code> <code>char</code> <code>int</code> <code>long</code> &gt; <code>0</code></li>
+<li><code>float</code> <code>double</code> &gt; <code>0.0</code></li>
+<li><code>boolean</code> &gt; <code>false</code></li>
+<li>引用数据类型 &gt; <code>null</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、字符串"><a href="#五、字符串" class="headerlink" title="五、字符串"></a>五、字符串</h2><ol>
+<li><p>字符串类对象实例化</p>
+<ul>
+<li>直接赋值实例化 <code>String str = &quot;Hello World.&quot;;</code></li>
+<li>构造方法实例化 <code>String str = new String(&quot;Hello World.&quot;);</code></li>
+<li>直接赋值实例化可重用相同的实例，构造方法实例化会开辟新的堆内存空间</li>
+</ul>
+</li>
+<li><p>字符串比较</p>
+<ul>
+<li><code>equals</code>比较内容是否相等</li>
+<li><code>==</code>比较引用地址是否相等</li>
+</ul>
+</li>
+<li><p>字符串连接</p>
+<ul>
+<li>可以用<code>+</code>来连接两个字符串(<code>+</code>在这里是一个连接运算符)</li>
+<li>字符串常量的内容不会改变，采用<code>+</code>连接符会生成新的字符串常量对象</li>
+<li>转义字符：每个转义字符都是由两个符号组成，但是编译器把他当成一个字符<ul>
+<li><code>\n</code> 换行符 光标移动到下一行</li>
+<li><code>\r</code> 回车符 把光标移动到本行的开始处</li>
+<li><code>\t</code> 制表符</li>
+<li>(<code>\r\n</code> windows <code>\n</code> linux <code>\r</code> mac 表示换行)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>字符串常量池</p>
+<ul>
+<li><p>直接赋值实例化的<code>String</code>对象保存在常量池中，供下次重用</p>
+</li>
+<li><p>构造方法实例化的<code>String</code>对象也可调用<code>intern()</code>手动入池</p>
+</li>
+<li><p>静态常量池</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//静态常量池</span></span><br><span class="line">        <span class="comment">//程序加载的时候会自动将程序中保存的字符串、普通的常量、类和方法等信息全部分配</span></span><br><span class="line">        String strA = <span class="string">"www.iflytek.com"</span>;</span><br><span class="line">        String strB = <span class="string">"www."</span> + <span class="string">"iflytek"</span> + <span class="string">".com"</span>;</span><br><span class="line">        <span class="comment">//判断结果: true</span></span><br><span class="line">        System.out.println(strA == strB);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行时常量池</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//运行时常量池</span></span><br><span class="line">        <span class="comment">//程序执行中动态的实例化字符串对象</span></span><br><span class="line">        String logo = <span class="string">"iflytek"</span>;</span><br><span class="line">        String strA = <span class="string">"www.iflytek.com"</span>;</span><br><span class="line">        <span class="comment">//频繁进行这样的操作会产生大量垃圾</span></span><br><span class="line">        String strB = <span class="string">"www."</span> + logo + <span class="string">".com"</span>;</span><br><span class="line">        <span class="comment">//判断结果: false</span></span><br><span class="line">        System.out.println(strA == strB);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>字符串其他常用操作：查阅API</p>
+</li>
+</ol>
+<h2 id="六、运算符"><a href="#六、运算符" class="headerlink" title="六、运算符"></a>六、运算符</h2><ol>
+<li>算数运算符<ul>
+<li><code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code></li>
+<li>取模运算不建议用于浮点型，结果可能不准确</li>
+<li>对于精度高的运算，需要使用BigDecimal类型</li>
+</ul>
+</li>
+<li>算术赋值运算符<ul>
+<li><code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code></li>
+<li>计算结果会进行数据类型的自动转换</li>
+</ul>
+</li>
+<li>自增自减运算符<ul>
+<li><code>++</code> <code>--</code></li>
+<li><code>++i</code>先自增再运算 <code>i++</code>先运算再自增</li>
+<li><code>--i</code>先自减再运算 <code>i--</code>先运算再自减</li>
+</ul>
+</li>
+<li>关系运算符<ul>
+<li><code>&gt;</code> <code>&gt;=</code> <code>&lt;</code> <code>&lt;=</code> <code>==</code> <code>!=</code></li>
+<li>返回值是<code>boolean</code>类型，一般用于判断语句中</li>
+</ul>
+</li>
+<li>逻辑运算符<ul>
+<li><code>&amp;</code>逻辑与 <code>|</code>逻辑或 <code>!</code>逻辑非</li>
+<li><code>&amp;&amp;</code>短路与 <code>||</code>短路或</li>
+</ul>
+</li>
+<li>位运算符<ul>
+<li>实现对两个二进制数的位进行运算</li>
+<li><code>&amp;</code>与 <code>|</code>或 <code>~</code>取反 <code>^</code>异或</li>
+<li><code>&lt;&lt;</code>左移位 <code>&gt;&gt;</code>有符号右移位 <code>&gt;&gt;&gt;</code>无符号右移位</li>
+</ul>
+</li>
+<li>三目运算符<ul>
+<li><code>condition?statement1:statement2</code></li>
+<li>该运算符的返回值类型为statement1和statement2中最大的类型</li>
+</ul>
+</li>
+<li>运算符优先级<ul>
+<li>算术运算符 &gt; 关系运算符 &gt; 逻辑运算符 &gt; 三目运算符 &gt; 赋值运算符</li>
+<li><code>()</code>括号内优先级最高</li>
+</ul>
+</li>
+</ol>
+<h2 id="七、流程控制"><a href="#七、流程控制" class="headerlink" title="七、流程控制"></a>七、流程控制</h2><ol>
+<li><p>程序的三种结构</p>
+<ul>
+<li>顺序结构</li>
+<li>选择结构(分支结构)</li>
+<li>循环结构</li>
+</ul>
+</li>
+<li><p>选择结构</p>
+<ul>
+<li><p><code>if</code>分支结构</p>
+<ul>
+<li><p><code>if</code>语句结构</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(condition)&#123;</span><br><span class="line">    statement1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>if else</code>语句结构</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(condition)&#123;</span><br><span class="line">    statement1;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    statement2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多条件判断</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(condition1)&#123;</span><br><span class="line">    statement1;</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(condition2)&#123;</span><br><span class="line">    statement2</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    statement3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>switch</code>开关语句</p>
+<ul>
+<li><p><code>switch</code>语法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(variable)&#123;</span><br><span class="line">    <span class="keyword">case</span> value1:</span><br><span class="line">        statement1;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> value2:</span><br><span class="line">        statement2;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        statement3;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>所支持的<code>variable</code>类型<code>byte</code> <code>Byte</code> <code>short</code> <code>Short</code> <code>char</code> <code>Character</code> <code>int</code> <code>Integer</code> <code>String</code> <code>enum</code></p>
+</li>
+<li><p>重点要理解有<code>break</code>和没有<code>break</code>的区别</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>循环结构</p>
+<ul>
+<li><p><code>while</code>循环结构</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(condition)&#123;</span><br><span class="line">    loop body;</span><br><span class="line">    updata condition;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>do while</code>循环结构</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    loop body;</span><br><span class="line">    updata condition;</span><br><span class="line">&#125;<span class="keyword">while</span>(condition);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>for</code>循环结构</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(initialize;condition;updata condition)&#123;</span><br><span class="line">    loop body;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>foreach</code>结构(加强<code>for</code>循环)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(dataType variable:array|collection)&#123;</span><br><span class="line">    loop body;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>死循环<code>for(;;){}</code>比<code>while(true){}</code>效率高</p>
+</li>
+<li><p>循环结构可以在内部嵌入若干个子循环结构</p>
+</li>
+<li><p>循环控制语句</p>
+<ul>
+<li><p><code>break</code>语句 跳出当前循环</p>
+</li>
+<li><p><code>continue</code>语句 停止本次循环，继续执行剩下的循环</p>
+</li>
+<li><p><code>break</code> <code>continue</code>可与label配合跳出多层循环(每个代码块都可以用一个label)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">outloop:</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">10</span>;j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j&lt;i)&#123;</span><br><span class="line">            <span class="keyword">break</span> outloop;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>return</code>语句 从当前的方法中退出(非循环控制语句)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="八、数组"><a href="#八、数组" class="headerlink" title="八、数组"></a>八、数组</h2><ol>
+<li><p>数组概述</p>
+<ul>
+<li>数组就是一组数的集合，集合中的数据必须是相同类型的，并且每一个数组都有一个名字，也就是数组名，我们可以通过数组名来访问数组中的元素</li>
+</ul>
+</li>
+<li><p>创建数组</p>
+<ul>
+<li><code>ArrayType arrayName[]=new ArrayType[length];</code></li>
+<li><code>ArrayType[] arrayName=new ArrayType[length];//推荐写法</code></li>
+</ul>
+</li>
+<li><p>初始化方式</p>
+<ul>
+<li><p>方法一：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] array=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];<span class="comment">//同实例变量和静态变量(类变量)初始化</span></span><br><span class="line">array[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">array[<span class="number">1</span>]=<span class="number">2</span>;</span><br><span class="line">array[<span class="number">2</span>]=<span class="number">3</span>;</span><br><span class="line">array[<span class="number">3</span>]=<span class="number">4</span>;</span><br><span class="line">array[<span class="number">4</span>]=<span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] array=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;<span class="comment">//这种写法只能用于声明时初始化</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法三：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] array;</span><br><span class="line">array=<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>获取数组长度</p>
+<ul>
+<li>理解数组是一个对象</li>
+<li><code>arrayName.length</code></li>
+</ul>
+</li>
+<li><p>数组复制</p>
+<ul>
+<li><code>System.arraycopy(源数组,源数组起始位置,目标数组,目标数组起始位置,要复制的数组元素数量);</code></li>
+<li><code>目标数组=Arrays.copyOf(源数组，目标数组长度);</code></li>
+</ul>
+</li>
+<li><p>数组排序</p>
+<ul>
+<li><code>Arrays.sort();</code></li>
+</ul>
+</li>
+<li><p>多维数组</p>
+<ul>
+<li><p>java中只存在一维数组，多维数组只不过是数组中的数组</p>
+</li>
+<li><p>不规则数组创建</p>
+<ul>
+<li><p>方法一：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] array=&#123;&#123;<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">2</span>&#125;,&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法二：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] array=<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][];</span><br><span class="line">array[<span class="number">0</span>]=<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>&#125;;</span><br><span class="line">array[<span class="number">1</span>]=<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>&#125;;</span><br><span class="line">array[<span class="number">2</span>]=<span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>可变参数</p>
+<ul>
+<li><p>按照数组方式进行操作的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span>... data)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> temp:data)&#123;</span><br><span class="line">        sum+=temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可变参数一定要定义在最后</p>
+</li>
+<li><p>一个方法只允许定义一个可变参数</p>
+</li>
+</ul>
+</li>
+<li><p>对象数组</p>
+<ul>
+<li>除了基本数据类型可以定义为数组，应用数据类型也可以定义数组</li>
+<li>操作上同基本数据类型相同</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="黄渡 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="黄渡 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    黄渡
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://huangdu94.club/笔记/java/基础语法/1-java笔记之基础语法篇/" title="java笔记之基础语法篇">https://huangdu94.club/笔记/java/基础语法/1-java笔记之基础语法篇/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java笔记/" rel="tag"># java笔记</a>
+          
+            <a href="/tags/基础语法/" rel="tag"># 基础语法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/笔记/makedown/makedown笔记/" rel="next" title="makedown笔记">
+                <i class="fa fa-chevron-left"></i> makedown笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/笔记/OS/linux/shell脚本/linux笔记之shell脚本篇/" rel="prev" title="linux笔记之shell脚本篇">
+                linux笔记之shell脚本篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar-knj.jpg" alt="黄渡">
+            
+              <p class="site-author-name" itemprop="name">黄渡</p>
+              <p class="site-description motion-element" itemprop="description">我喜欢敲代码。I like programming.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/huangdu94" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:445951954@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.csdn.net/" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.runoob.com/" title="菜鸟教程" target="_blank">菜鸟教程</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ke.qq.com/" title="腾讯课堂" target="_blank">腾讯课堂</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、java的基本元素"><span class="nav-text">一、java的基本元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、八大基本数据类型及数据类型转换"><span class="nav-text">二、八大基本数据类型及数据类型转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、变量和常量"><span class="nav-text">三、变量和常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、赋值与初始化"><span class="nav-text">四、赋值与初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、字符串"><span class="nav-text">五、字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、运算符"><span class="nav-text">六、运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、流程控制"><span class="nav-text">七、流程控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、数组"><span class="nav-text">八、数组</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">黄渡</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">网站字数统计&#58;</span>
+    
+    <span title="网站字数统计">37.5k 字</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 本站访问数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+    <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+ 
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+ 
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+ 
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+ 
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+ 
+        if(result)$(this).text('复制成功')
+        else $(this).text('复制失败')
+ 
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'wl3Y5n2pUmkCgexySUMfhC5p-gzGzoHsz',
+        appKey: '8Dl95838MCqN8BDVLl6Tcavu',
+        placeholder: '想对作者说点什么',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("wl3Y5n2pUmkCgexySUMfhC5p-gzGzoHsz", "8Dl95838MCqN8BDVLl6Tcavu");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/clicklove.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
