@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Elasticsearch笔记（中）</title>
-    <url>/%E7%AC%94%E8%AE%B0/database/elasticsearch/elasticsearch%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%AD%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="Elasticsearch权威指南笔记（中）"><a href="#Elasticsearch权威指南笔记（中）" class="headerlink" title="Elasticsearch权威指南笔记（中）"></a>Elasticsearch权威指南笔记（中）</h2><h3 id="十一、请求体查询"><a href="#十一、请求体查询" class="headerlink" title="十一、请求体查询"></a>十一、请求体查询</h3><h4 id="1-请求体查询"><a href="#1-请求体查询" class="headerlink" title="1. 请求体查询"></a>1. 请求体查询</h4><ul>
+    <title>Elasticsearch笔记（二）</title>
+    <url>/%E7%AC%94%E8%AE%B0/database/elasticsearch/elasticsearch%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="Elasticsearch笔记（二）"><a href="#Elasticsearch笔记（二）" class="headerlink" title="Elasticsearch笔记（二）"></a>Elasticsearch笔记（二）</h2><h3 id="十一、请求体查询"><a href="#十一、请求体查询" class="headerlink" title="十一、请求体查询"></a>十一、请求体查询</h3><h4 id="1-请求体查询"><a href="#1-请求体查询" class="headerlink" title="1. 请求体查询"></a>1. 请求体查询</h4><ul>
 <li><p>简单查询语句(lite)是一种有效的命令行adhoc查询。更复杂的查询，必须使用请求体查询(request bodysearch )API</p>
 </li>
 <li><p>请求体查询中的空查询</p>
@@ -536,9 +536,9 @@
       </tags>
   </entry>
   <entry>
-    <title>Elasticsearch笔记（上）</title>
-    <url>/%E7%AC%94%E8%AE%B0/database/elasticsearch/elasticsearch%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
-    <content><![CDATA[<h2 id="Elasticsearch权威指南笔记（上）"><a href="#Elasticsearch权威指南笔记（上）" class="headerlink" title="Elasticsearch权威指南笔记（上）"></a>Elasticsearch权威指南笔记（上）</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ul>
+    <title>Elasticsearch笔记（一）</title>
+    <url>/%E7%AC%94%E8%AE%B0/database/elasticsearch/elasticsearch%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<h2 id="Elasticsearch笔记（一）"><a href="#Elasticsearch笔记（一）" class="headerlink" title="Elasticsearch笔记（一）"></a>Elasticsearch笔记（一）</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ul>
 <li>Elasticsearch是一个实时分布式搜索和分析引擎。它让你以前所未有的速度处理大数据成为可能</li>
 <li>Elasticsearch是一个基于Apache Lucene(TM)的开源搜索引擎。无论在开源还是专有领域，Lucene可以被认为是迄今为止最先进、性能最好的、功能最全的搜索引擎库</li>
 </ul>

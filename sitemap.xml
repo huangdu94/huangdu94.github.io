@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://huangdu94.club/%E7%AC%94%E8%AE%B0/database/elasticsearch/elasticsearch%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
+    
+    <lastmod>2020-01-23T16:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://huangdu94.club/%E7%AC%94%E8%AE%B0/database/elasticsearch/elasticsearch%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
+    
+    <lastmod>2020-01-23T16:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://huangdu94.club/tags/index.html</loc>
     
     <lastmod>2020-01-11T15:19:33.244Z</lastmod>
@@ -19,20 +33,6 @@
     <loc>https://huangdu94.club/categories/index.html</loc>
     
     <lastmod>2020-01-11T15:19:33.240Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://huangdu94.club/%E7%AC%94%E8%AE%B0/database/elasticsearch/elasticsearch%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%AD%EF%BC%89/</loc>
-    
-    <lastmod>2020-01-05T16:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://huangdu94.club/%E7%AC%94%E8%AE%B0/database/elasticsearch/elasticsearch%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%8A%EF%BC%89/</loc>
-    
-    <lastmod>2020-01-05T16:00:00.000Z</lastmod>
     
   </url>
   
