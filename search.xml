@@ -710,7 +710,7 @@
 </ul>
 <h4 id="4-更新整个文档"><a href="#4-更新整个文档" class="headerlink" title="4. 更新整个文档"></a>4. 更新整个文档</h4><ul>
 <li>文档在Elasticsearch中是不可变的，我们不能修改他们。如果需要更新已存在的文档，可以使用索引文档章节提到的index API重建索引(reindex)</li>
-<li>update API似乎允许你修改文档的局部，但事实上Elasticsearch遵循与之前所说完全相同的过程<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PUT /website/blog/123</span><br><span class="line">&#123;</span><br><span class="line">  &quot;title&quot;: &quot;My first blog entry&quot;,</span><br><span class="line">  &quot;text&quot;: &quot;I am starting to get the hang of this...&quot;,</span><br><span class="line">  &quot;date&quot;: &quot;2014/01/01&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>update API似乎允许你修改文档的局部，但事实上Elasticsearch遵循与之前所说完全相同的过程  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PUT /website/blog/123</span><br><span class="line">&#123;</span><br><span class="line">  &quot;title&quot;: &quot;My first blog entry&quot;,</span><br><span class="line">  &quot;text&quot;: &quot;I am starting to get the hang of this...&quot;,</span><br><span class="line">  &quot;date&quot;: &quot;2014/01/01&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
