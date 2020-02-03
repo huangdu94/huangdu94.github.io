@@ -62,7 +62,7 @@
 <h4 id="3-查询与过滤"><a href="#3-查询与过滤" class="headerlink" title="3. 查询与过滤"></a>3. 查询与过滤</h4><ul>
 <li>两种结构化语句：结构化查询(Query DSL)和结构化过滤(Filter DSL)</li>
 <li>过滤语句会询问每个文档的字段值是否包含着特定值</li>
-<li>查询语句与过滤语句相似，但问法不同，查询语句会询问每个文档的字段值与特定值的匹配程度如何</li>
+<li>查询语句会询问每个文档的字段值与特定值的匹配程度如何</li>
 <li>原则上来说，使用查询语句做全文本搜索或其他需要进行相关性评分的时候，剩下的全部用过滤语句</li>
 <li>查询语句和过滤语句可以放在各自的上下文中，在ElasticSearch API中我们会看到许多带有<code>query</code>或<code>filter</code>的语句</li>
 <li>这些语句既可以包含单条<code>query</code>语句，也可以包含一条<code>filter</code>子句。这些语句需要首先创建一个<code>query</code>或<code>filter</code>的上下文关系</li>
@@ -95,13 +95,8 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;match_all&quot;: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>match</code>查询<br><code>match</code>查询是一个标准查询，不管你需要全文本查询还是精确查询基本上都要用到它<br>做精确匹配搜索时，最好用过滤语句，因为过滤语句可以缓存数据<br>不像在简单搜索中介绍的字符查询，<code>match</code>查询不可以用类似<code>+usid:2 +tweet:search</code>这样的语句。它只能就指定某个确切字段某个确切的值进行搜索，而你要做的就是为它指定正确的字段名以避免语法错误</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;match&quot;: &#123;</span><br><span class="line">    &quot;tweet&quot;: &quot;About Search&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;match&quot;: &#123;</span><br><span class="line">    &quot;tweet&quot;: &quot;About Search&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#123; &quot;match&quot;: &#123; &quot;age&quot;: 26 &#125;&#125;</span><br><span class="line">&#123; &quot;match&quot;: &#123; &quot;date&quot;: &quot;2014-09-01&quot; &#125;&#125;</span><br><span class="line">&#123; &quot;match&quot;: &#123; &quot;public&quot;: true &#125;&#125;</span><br><span class="line">&#123; &quot;match&quot;: &#123; &quot;tag&quot;: &quot;full_text&quot; &#125;&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123; &quot;match&quot;: &#123; &quot;age&quot;: 26 &#125;&#125;</span><br><span class="line">&#123; &quot;match&quot;: &#123; &quot;date&quot;: &quot;2014-09-01&quot; &#125;&#125;</span><br><span class="line">&#123; &quot;match&quot;: &#123; &quot;public&quot;: true &#125;&#125;</span><br><span class="line">&#123; &quot;match&quot;: &#123; &quot;tag&quot;: &quot;full_text&quot; &#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="8">
 <li><p><code>multi_match</code>查询<br><code>multi_match</code>查询允许你做<code>match</code>查询的基础上同时搜索多个字段</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;multi_match&quot;: &#123;</span><br><span class="line">    &quot;query&quot;: &quot;full text search&quot;,</span><br><span class="line">    &quot;fields&quot;: [ &quot;title&quot;, &quot;body&quot; ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -139,27 +134,28 @@
 </li>
 </ol>
 <h3 id="十一、排序"><a href="#十一、排序" class="headerlink" title="十一、排序"></a>十一、排序</h3><h4 id="1-排序方式"><a href="#1-排序方式" class="headerlink" title="1. 排序方式"></a>1. 排序方式</h4><ul>
-<li>默认情况下，结果集会按照相关性进行排序(相关性分值会用<code>_score</code>字段来给出一个浮点型的数值，默认情况下，结果集以<code>_score</code>进行倒序排列)</li>
-<li>过滤语句与<code>_score</code>没有关系，但是有隐含的查询条件<code>match_all</code>为所有的文档的<code>_score</code>设值为1。也就相当于所有的文档相关性是相同的</li>
-<li>下面例子中，对结果集按照时间排序<ol>
+<li><p>默认情况下，结果集会按照相关性进行排序(相关性分值会用<code>_score</code>字段来给出一个浮点型的数值，默认情况下，结果集以<code>_score</code>进行倒序排列)</p>
+</li>
+<li><p>过滤语句与<code>_score</code>没有关系，但是有隐含的查询条件<code>match_all</code>为所有的文档的<code>_score</code>设值为1。也就相当于所有的文档相关性是相同的</p>
+</li>
+<li><p>下面例子中，对结果集按照时间排序</p>
+<ol>
 <li><code>_score</code>字段没有经过计算，因为它没有用作排序(想强制计算其相关性，可以设置<code>track_scores</code>为<code>true</code>)</li>
 <li>增加了一个<code>sort</code>字段，其中<code>date</code>字段被转为毫秒当作排序依据<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GET /_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;filtered&quot; : &#123;</span><br><span class="line">      &quot;filter&quot; : &#123; &quot;term&quot; : &#123; &quot;user_id&quot; : 1 &#125;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;sort&quot;: &#123; &quot;date&quot;: &#123; &quot;order&quot;: &quot;desc&quot; &#125;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
 </li>
-</ul>
+<li><p>排序结果</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hits&quot; : &#123;</span><br><span class="line">  &quot;total&quot; : 6,</span><br><span class="line">  &quot;max_score&quot; : null, &lt;1&gt;</span><br><span class="line">  &quot;hits&quot; : [ &#123;</span><br><span class="line">    &quot;_index&quot; : &quot;us&quot;,</span><br><span class="line">    &quot;_type&quot; : &quot;tweet&quot;,</span><br><span class="line">    &quot;_id&quot; : &quot;14&quot;,</span><br><span class="line">    &quot;_score&quot; : null, &lt;1&gt;</span><br><span class="line">    &quot;_source&quot; : &#123;</span><br><span class="line">      &quot;date&quot;: &quot;2014-09-24&quot;,</span><br><span class="line">      ...</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;sort&quot; : [ 1411516800000 ] &lt;2&gt;</span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
+</li>
 <li><p>作为缩写，你可以只指定要排序的字段名称<code>&quot;sort&quot;: &quot;number_of_children&quot;</code>，字段值默认以顺序排列，而<code>_score</code>默认以倒序排列</p>
 </li>
 <li><p>多级排序(结果集会先用第一排序字段来排序，当用用作第一字段排序的值相同的时候，然后再用第二字段对第一排序值相同的文档进行排序，以此类推)</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GET /_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;filtered&quot; : &#123;</span><br><span class="line">      &quot;query&quot;: &#123; &quot;match&quot;: &#123; &quot;tweet&quot;: &quot;manage text search&quot; &#125;&#125;,</span><br><span class="line">      &quot;filter&quot; : &#123; &quot;term&quot; : &#123; &quot;user_id&quot; : 2 &#125;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;sort&quot;: [</span><br><span class="line">    &#123; &quot;date&quot;: &#123; &quot;order&quot;: &quot;desc&quot; &#125;&#125;,</span><br><span class="line">    &#123; &quot;_score&quot;: &#123; &quot;order&quot;: &quot;desc&quot; &#125;&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>字符查询也支持自定义排序，在查询字符串使用<code>sort</code>参数就可以<code>GET /_search?sort=date:desc&amp;sort=_score&amp;q=text</code></p>
+<li><p>字符查询也支持相关性排序，在查询字符串使用<code>sort</code>参数就可以<code>GET /_search?sort=date:desc&amp;sort=_score&amp;q=text</code></p>
 </li>
-<li><p>对于数字和日期，可以从多个值中取出一个来进行排序，你可以使用<code>min</code>,<code>max</code>,<code>avg</code>或<code>sum</code>这些模式。比说你可以在<code>dates</code>字段中用最早的日期来进行排序</p>
+<li><p>对于数字和日期数组，可以从多个值中取出一个来进行排序，你可以使用<code>min</code>,<code>max</code>,<code>avg</code>或<code>sum</code>这些模式。比说你可以在<code>dates</code>字段中用最早的日期来进行排序</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;sort&quot;: &#123;</span><br><span class="line">  &quot;dates&quot;: &#123;</span><br><span class="line">    &quot;order&quot;: &quot;asc&quot;,</span><br><span class="line">    &quot;mode&quot;: &quot;min&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>analyzed</code>字符串字段同时也是多值字段，在这些字段上排序往往得不到你想要的值，为了使一个string字段可以进行排序，它必须是完整的<code>not_analyzed</code>字符串(对<code>analyzed</code>字段进行强制排序会消耗大量内存)</p>
@@ -505,14 +501,12 @@
 <li><p>创建一个索引<code>my_index_v1</code>，然后将别名<code>my_index</code>指向它</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PUT /my_index_v1</span><br><span class="line">PUT /my_index_v1/_alias/my_index</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>检测这个别名指向哪个索引，或哪些别名指向这个索引(两者都将返回下列值)</p>
+<li><p>检测这个别名指向哪个索引，或哪些别名指向这个索引</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GET /*/_alias/my_index</span><br><span class="line">GET /my_index_v1/_alias/*</span><br></pre></td></tr></table></figure>
-
 </li>
-</ol>
+<li><p>两者都将返回下列值</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;my_index_v1&quot; : &#123;</span><br><span class="line">    &quot;aliases&quot; : &#123;</span><br><span class="line">      &quot;my_index&quot; : &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
+</li>
 <li><p>然后，我们决定修改索引中一个字段的映射。当然我们不能修改现存的映射，索引我们需要重新索引数据。首先，我们创建有新的映射的索引<code>my_index_v2</code></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PUT /my_index_v2</span><br><span class="line">&#123;</span><br><span class="line">  &quot;mappings&quot;: &#123;</span><br><span class="line">    &quot;my_type&quot;: &#123;</span><br><span class="line">      &quot;properties&quot;: &#123;</span><br><span class="line">        &quot;tags&quot;: &#123;</span><br><span class="line">          &quot;type&quot;: &quot;string&quot;,</span><br><span class="line">          &quot;index&quot;: &quot;not_analyzed&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
