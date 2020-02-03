@@ -446,7 +446,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5.6k 字
+                  5.9k 字
                 </span>
               
 
@@ -462,7 +462,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  24 分钟
+                  26 分钟
                 </span>
               
             </div>
@@ -655,69 +655,113 @@
 </ul>
 <h4 id="4-更新整个文档"><a href="#4-更新整个文档" class="headerlink" title="4. 更新整个文档"></a>4. 更新整个文档</h4><ul>
 <li>文档在Elasticsearch中是不可变的，我们不能修改他们。如果需要更新已存在的文档，可以使用索引文档章节提到的index API重建索引(reindex)</li>
-<li>update API似乎允许你修改文档的局部，但事实上Elasticsearch遵循与之前所说完全相同的过程<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PUT /website/blog/123</span><br><span class="line">&#123;</span><br><span class="line">  &quot;title&quot;: &quot;My first blog entry&quot;,</span><br><span class="line">  &quot;text&quot;: &quot;I am starting to get the hang of this...&quot;,</span><br><span class="line">  &quot;date&quot;: &quot;2014/01/01&quot;</span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">#### 5. 创建一个新文档</span><br><span class="line">+ 使用自增id保证文档新增而不是覆盖原来的</span><br></pre></td></tr></table></figure>
+<li>update API似乎允许你修改文档的局部，但事实上Elasticsearch遵循与之前所说完全相同的过程<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PUT /website/blog/123</span><br><span class="line">&#123;</span><br><span class="line">  &quot;title&quot;: &quot;My first blog entry&quot;,</span><br><span class="line">  &quot;text&quot;: &quot;I am starting to get the hang of this...&quot;,</span><br><span class="line">  &quot;date&quot;: &quot;2014/01/01&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<p>POST /website/blog/<br>{ … }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ 使用指定id，在id已被使用的时候创建失败，方法一</span><br></pre></td></tr></table></figure>
+<h4 id="5-创建一个新文档"><a href="#5-创建一个新文档" class="headerlink" title="5. 创建一个新文档"></a>5. 创建一个新文档</h4><ul>
+<li><p>使用自增id保证文档新增而不是覆盖原来的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST /website/blog/</span><br><span class="line">&#123; ... &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用指定id，在id已被使用的时候创建失败，方法一</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PUT /website/blog/123?op_type=create</span><br><span class="line">&#123; ... &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用指定id，在id已被使用的时候创建失败，方法二</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PUT /website/blog/123/_create</span><br><span class="line">&#123; ... &#125;</span><br></pre></td></tr></table></figure>
 
-<p>PUT /website/blog/123?op_type=create<br>{ … }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ 使用指定id，在id已被使用的时候创建失败，方法二</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="6-删除文档"><a href="#6-删除文档" class="headerlink" title="6. 删除文档"></a>6. 删除文档</h4><ul>
+<li>删除一个文档也不会立即从磁盘上移除，它只是被标记成已删除。Elasticsearch将会在你之后添加更多索引的时候才会在后台进行删除内容的清理</li>
+<li><code>DELETE /website/blog/123</code></li>
+</ul>
+<h4 id="7-Elasticsearch版本控制"><a href="#7-Elasticsearch版本控制" class="headerlink" title="7. Elasticsearch版本控制"></a>7. Elasticsearch版本控制</h4><ul>
+<li>为了保证数据在多线程操作下的准确性ES要进行版本控制(CAS无锁)</li>
+<li>悲观锁和乐观锁<ul>
+<li>悲观锁：假设会发生并发冲突，屏蔽一切可能违反数据准确性的操作</li>
+<li>乐观锁：假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性</li>
+</ul>
+</li>
+<li>内部版本控制和外部版本控制<ul>
+<li>内部版本控制：<code>_version</code>自增长，修改数据后，<code>_version</code>会自动的加1</li>
+<li>外部版本控制：为了保持<code>_version</code>与外部版本控制的数值一致</li>
+<li>使用<code>version_type=external</code>检查数据当前的version值是否小于请求中的version值</li>
+</ul>
+</li>
+</ul>
+<h4 id="8-带版本控制的操作"><a href="#8-带版本控制的操作" class="headerlink" title="8. 带版本控制的操作"></a>8. 带版本控制的操作</h4><ul>
+<li><p>我们只希望文档的<code>_version</code>是1时更新才生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT /website/blog/1?version=1</span><br><span class="line">&#123;</span><br><span class="line">  &quot;title&quot;: &quot;My first blog entry&quot;,</span><br><span class="line">  &quot;text&quot;: &quot;Starting to get the hang of this...&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用外部版本号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT /website/blog/2?version=5&amp;version_type=external</span><br><span class="line">&#123;</span><br><span class="line">  &quot;title&quot;: &quot;My first external blog entry&quot;,</span><br><span class="line">  &quot;text&quot;: &quot;Starting to get the hang of this...&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>PUT /website/blog/123/_create<br>{ … }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 6. 删除文档</span><br><span class="line">+ 删除一个文档也不会立即从磁盘上移除，它只是被标记成已删除。Elasticsearch将会在你之后添加更多索引的时候才会在后台进行删除内容的清理</span><br><span class="line">+ `DELETE /website/blog/123`</span><br><span class="line"></span><br><span class="line">#### 7. Elasticsearch版本控制</span><br><span class="line">+ 为了保证数据在多线程操作下的准确性ES要进行版本控制(CAS无锁)</span><br><span class="line">+ 悲观锁和乐观锁</span><br><span class="line">    + 悲观锁：假设会发生并发冲突，屏蔽一切可能违反数据准确性的操作</span><br><span class="line">    + 乐观锁：假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性</span><br><span class="line">+ 内部版本控制和外部版本控制</span><br><span class="line">    + 内部版本控制：`_version`自增长，修改数据后，`_version`会自动的加1</span><br><span class="line">    + 外部版本控制：为了保持`_version`与外部版本控制的数值一致</span><br><span class="line">    + 使用`version_type=external`检查数据当前的version值是否小于请求中的version值</span><br><span class="line">    </span><br><span class="line">#### 8. 带版本控制的操作</span><br><span class="line">+ 我们只希望文档的`_version`是1时更新才生效</span><br></pre></td></tr></table></figure>
 
-<p>PUT /website/blog/1?version=1<br>{<br>  “title”: “My first blog entry”,<br>  “text”: “Starting to get the hang of this…”<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ 使用外部版本号</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="9-文档局部更新-本质上同更新整个文档"><a href="#9-文档局部更新-本质上同更新整个文档" class="headerlink" title="9. 文档局部更新(本质上同更新整个文档)"></a>9. 文档局部更新(本质上同更新整个文档)</h4><ul>
+<li><p>update API</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">POST /website/blog/1/_update</span><br><span class="line">&#123;</span><br><span class="line">  &quot;doc&quot; : &#123;</span><br><span class="line">    &quot;tags&quot; : [ &quot;testing&quot; ],</span><br><span class="line">    &quot;views&quot;: 0</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用脚本局部更新(需要在elasticsearch.yml文件中配置<code>script.inline</code>和<code>script.indexed</code>为<code>true</code>)</p>
+</li>
+<li><p>使用脚本指定字段增加一</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /website/blog/1/_update</span><br><span class="line">&#123;</span><br><span class="line">  &quot;script&quot; : &quot;ctx._source.views+=1&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用脚本指定字段增加内容，内容从参数指定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">POST /website/blog/1/_update</span><br><span class="line">&#123;</span><br><span class="line">  &quot;script&quot; : &quot;ctx._source.tags+=new_tag&quot;,</span><br><span class="line">  &quot;params&quot; : &#123;</span><br><span class="line">    &quot;new_tag&quot; : &quot;search&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当满足特定条件的时候，脚本执行特定操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">POST /website/blog/1/_update</span><br><span class="line">&#123;</span><br><span class="line">  &quot;script&quot; : &quot;ctx.op = ctx._source.views == count ? &apos;delete&apos; : &apos;none&apos;&quot;,</span><br><span class="line">  &quot;params&quot; : &#123;</span><br><span class="line">    &quot;count&quot;: 1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当脚本所指定字段不存在时，初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">POST /website/pageviews/1/_update</span><br><span class="line">&#123;</span><br><span class="line">  &quot;script&quot; : &quot;ctx._source.views+=1&quot;,</span><br><span class="line">  &quot;upsert&quot;: &#123;</span><br><span class="line">    &quot;views&quot;: 1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当更新发生冲突时，重新执行(5次)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">POST /website/pageviews/1/_update?retry_on_conflict=5</span><br><span class="line">&#123;</span><br><span class="line">  &quot;script&quot; : &quot;ctx._source.views+=1&quot;,</span><br><span class="line">  &quot;upsert&quot;: &#123;</span><br><span class="line">    &quot;views&quot;: 0</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>PUT /website/blog/2?version=5&amp;version_type=external<br>{<br>  “title”: “My first external blog entry”,<br>  “text”: “Starting to get the hang of this…”<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">#### 9. 文档局部更新(本质上同更新整个文档)</span><br><span class="line">+ update API</span><br></pre></td></tr></table></figure>
 
-<p>POST /website/blog/1/_update<br>{<br>  “doc” : {<br>    “tags” : [ “testing” ],<br>    “views”: 0<br>  }<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+ 使用脚本局部更新(需要在elasticsearch.yml文件中配置`script.inline`和`script.indexed`为`true`)</span><br><span class="line">+ 使用脚本指定字段增加一</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="10-检索多个文档-mget-API"><a href="#10-检索多个文档-mget-API" class="headerlink" title="10. 检索多个文档(mget API)"></a>10. 检索多个文档(mget API)</h4><ul>
+<li><p>mget API参数是一个docs数组，数组的每个节点定义一个文档的<code>_index</code>、<code>_type</code>、<code>_id</code>元数据，如果你只想检索一个或几个确定的字段，也可以定义一个<code>_source</code>参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">GET /_mget</span><br><span class="line">&#123;</span><br><span class="line">  &quot;docs&quot;:[</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;_index&quot; : &quot;website&quot;,</span><br><span class="line">      &quot;_type&quot; : &quot;blog&quot;,</span><br><span class="line">      &quot;_id&quot; : 2</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;_index&quot; : &quot;website&quot;,</span><br><span class="line">      &quot;_type&quot; : &quot;pageviews&quot;,</span><br><span class="line">      &quot;_id&quot; : 1,</span><br><span class="line">      &quot;_source&quot;: &quot;views&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>公共的参数可以在请求地址中指定，但是请求体中依然可以覆盖请求地址中参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GET /website/blog/_mget</span><br><span class="line">&#123;</span><br><span class="line">  &quot;docs&quot; : [</span><br><span class="line">    &#123; &quot;_id&quot; : 2 &#125;,</span><br><span class="line">    &#123; &quot;_type&quot; : &quot;pageviews&quot;, &quot;_id&quot; : 1 &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询多个id的简写方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET /website/blog/_mget</span><br><span class="line">&#123;</span><br><span class="line">  &quot;ids&quot; : [ &quot;2&quot;, &quot;1&quot; ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>POST /website/blog/1/_update<br>{<br>  “script” : “ctx._source.views+=1”<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ 使用脚本指定字段增加内容，内容从参数指定</span><br></pre></td></tr></table></figure>
 
-<p>POST /website/blog/1/_update<br>{<br>  “script” : “ctx._source.tags+=new_tag”,<br>  “params” : {<br>    “new_tag” : “search”<br>  }<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ 当满足特定条件的时候，脚本执行特定操作</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="11-更省时的批量操作"><a href="#11-更省时的批量操作" class="headerlink" title="11. 更省时的批量操作"></a>11. 更省时的批量操作</h4><ul>
+<li><p>bulk API允许我们使用单一请求来实现多个文档的<code>create</code> <code>index</code> <code>update</code>或<code>delete</code>。这对索引类似于日志活动这样的数据流非常有用，它们可以以成百上千的数据为一个批次按序进行索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123; action: &#123; metadata &#125;&#125;\n</span><br><span class="line">&#123; request body &#125;\n</span><br><span class="line">&#123; action: &#123; metadata &#125;&#125;\n</span><br><span class="line">&#123; request body &#125;\n</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每行必须以<code>\n</code>符号结尾，包括最后一行。这些都是作为每行有效的分离而做的标记</p>
+</li>
+<li><p>每一行的数据不能包含未被转义的换行符，它们会干扰分析——这意味着JSON不能被美化打印</p>
+</li>
+<li><p>删除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; &quot;delete&quot;: &#123; &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot;, &quot;_id&quot;: &quot;123&quot; &#125;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建，指定id</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123; &quot;create&quot;: &#123; &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot;, &quot;_id&quot;: &quot;123&quot; &#125;&#125;</span><br><span class="line">&#123; &quot;title&quot;: &quot;My first blog post&quot; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建，不指定id</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123; &quot;index&quot;: &#123; &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot; &#125;&#125;</span><br><span class="line">&#123; &quot;title&quot;: &quot;My second blog post&quot; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>放在一起例子(记得最后一个换行符)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST /_bulk</span><br><span class="line">&#123; &quot;delete&quot;: &#123; &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot;, &quot;_id&quot;: &quot;123&quot; &#125;&#125;</span><br><span class="line">&#123; &quot;create&quot;: &#123; &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot;, &quot;_id&quot;: &quot;123&quot; &#125;&#125;</span><br><span class="line">&#123; &quot;title&quot;: &quot;My first blog post&quot; &#125;</span><br><span class="line">&#123; &quot;index&quot;: &#123; &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot; &#125;&#125;</span><br><span class="line">&#123; &quot;title&quot;: &quot;My second blog post&quot; &#125;</span><br><span class="line">&#123; &quot;update&quot;: &#123; &quot;_index&quot;: &quot;website&quot;, &quot;_type&quot;: &quot;blog&quot;, &quot;_id&quot;: &quot;123&quot;, &quot;_retry_on_conflict&quot; : 3&#125; &#125;</span><br><span class="line">&#123; &quot;doc&quot; : &#123;&quot;title&quot; : &quot;My updated blog post&quot;&#125; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重复的内容可以不写在请求体中(依然可以覆盖，同mget)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST /website/_bulk</span><br><span class="line">&#123; &quot;index&quot;: &#123; &quot;_type&quot;: &quot;log&quot; &#125;&#125;</span><br><span class="line">&#123; &quot;event&quot;: &quot;User logged in&quot; &#125;</span><br></pre></td></tr></table></figure>
 
-<p>POST /website/blog/1/_update<br>{<br>  “script” : “ctx.op = ctx._source.views == count ? ‘delete’ : ‘none’”,<br>  “params” : {<br>    “count”: 1<br>  }<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ 当脚本所指定字段不存在时，初始化</span><br></pre></td></tr></table></figure>
-
-<p>POST /website/pageviews/1/_update<br>{<br>  “script” : “ctx._source.views+=1”,<br>  “upsert”: {<br>    “views”: 1<br>  }<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ 当更新发生冲突时，重新执行(5次)</span><br></pre></td></tr></table></figure>
-
-<p>POST /website/pageviews/1/_update?retry_on_conflict=5<br>{<br>  “script” : “ctx._source.views+=1”,<br>  “upsert”: {<br>    “views”: 0<br>  }<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">#### 10. 检索多个文档(mget API)</span><br><span class="line">+ mget API参数是一个docs数组，数组的每个节点定义一个文档的`_index`、`_type`、`_id`元数据，如果你只想检索一个或几个确定的字段，也可以定义一个`_source`参数</span><br></pre></td></tr></table></figure>
-
-<p>GET /_mget<br>{<br>  “docs”:[<br>    {<br>      “_index” : “website”,<br>      “_type” : “blog”,<br>      “_id” : 2<br>    },<br>    {<br>      “_index” : “website”,<br>      “_type” : “pageviews”,<br>      “_id” : 1,<br>      “_source”: “views”<br>    }<br>  ]<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ 公共的参数可以在请求地址中指定，但是请求体中依然可以覆盖请求地址中参数</span><br></pre></td></tr></table></figure>
-
-<p>GET /website/blog/_mget<br>{<br>  “docs” : [<br>    { “_id” : 2 },<br>    { “_type” : “pageviews”, “_id” : 1 }<br>  ]<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ 查询多个id的简写方式</span><br></pre></td></tr></table></figure>
-
-<p>GET /website/blog/_mget<br>{<br>  “ids” : [ “2”, “1” ]<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line">#### 11. 更省时的批量操作</span><br><span class="line">+ bulk API允许我们使用单一请求来实现多个文档的`create` `index` `update`或`delete`。这对索引类似于日志活动这样的数据流非常有用，它们可以以成百上千的数据为一个批次按序进行索引</span><br></pre></td></tr></table></figure>
-
-<p>{ action: { metadata }}\n<br>{ request body }\n<br>{ action: { metadata }}\n<br>{ request body }\n<br>…</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+ 每行必须以`\n`符号结尾，包括最后一行。这些都是作为每行有效的分离而做的标记</span><br><span class="line">+ 每一行的数据不能包含未被转义的换行符，它们会干扰分析——这意味着JSON不能被美化打印</span><br><span class="line">+ 删除</span><br></pre></td></tr></table></figure>
-
-<p>{ “delete”: { “_index”: “website”, “_type”: “blog”, “_id”: “123” }}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ 创建，指定id</span><br></pre></td></tr></table></figure>
-
-<p>{ “create”: { “_index”: “website”, “_type”: “blog”, “_id”: “123” }}<br>{ “title”: “My first blog post” }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ 创建，不指定id</span><br></pre></td></tr></table></figure>
-
-<p>{ “index”: { “_index”: “website”, “_type”: “blog” }}<br>{ “title”: “My second blog post” }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ 放在一起例子(记得最后一个换行符)</span><br></pre></td></tr></table></figure>
-
-<p>POST /_bulk<br>{ “delete”: { “_index”: “website”, “_type”: “blog”, “_id”: “123” }}<br>{ “create”: { “_index”: “website”, “_type”: “blog”, “_id”: “123” }}<br>{ “title”: “My first blog post” }<br>{ “index”: { “_index”: “website”, “_type”: “blog” }}<br>{ “title”: “My second blog post” }<br>{ “update”: { “_index”: “website”, “_type”: “blog”, “_id”: “123”, “_retry_on_conflict” : 3} }<br>{ “doc” : {“title” : “My updated blog post”} }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ 重复的内容可以不写在请求体中(依然可以覆盖，同mget)</span><br></pre></td></tr></table></figure>
-
-<p>POST /website/_bulk<br>{ “index”: { “_type”: “log” }}<br>{ “event”: “User logged in” }</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">POST /website/log/_bulk</span><br><span class="line">&#123; &quot;index&quot;: &#123;&#125;&#125;</span><br><span class="line">&#123; &quot;event&quot;: &quot;User logged in&quot; &#125;</span><br><span class="line">&#123; &quot;index&quot;: &#123; &quot;_type&quot;: &quot;blog&quot; &#125;&#125;</span><br><span class="line">&#123; &quot;title&quot;: &quot;Overriding the default type&quot; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST /website/log/_bulk</span><br><span class="line">&#123; &quot;index&quot;: &#123;&#125;&#125;</span><br><span class="line">&#123; &quot;event&quot;: &quot;User logged in&quot; &#125;</span><br><span class="line">&#123; &quot;index&quot;: &#123; &quot;_type&quot;: &quot;blog&quot; &#125;&#125;</span><br><span class="line">&#123; &quot;title&quot;: &quot;Overriding the default type&quot; &#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>最佳大小并不是一个固定的数字。它完全取决于你的硬件、你文档的大小和复杂度以及索引和搜索的负载</li>
@@ -1238,7 +1282,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Elasticsearch笔记（一）"><span class="nav-text">Elasticsearch笔记（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、概述"><span class="nav-text">一、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、下载与安装"><span class="nav-text">二、下载与安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Cluster、Node、Index、Type、Document和Field"><span class="nav-text">三、Cluster、Node、Index、Type、Document和Field</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、与Elasticsearch交互"><span class="nav-text">四、与Elasticsearch交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、ES快速入门"><span class="nav-text">五、ES快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建三个员工"><span class="nav-text">1. 创建三个员工</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-根据id操作员工信息"><span class="nav-text">2. 根据id操作员工信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-简单搜索"><span class="nav-text">3. 简单搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-使用DSL-Domain-Specific-Language-特定领域语言-语句查询"><span class="nav-text">4. 使用DSL(Domain Specific Language,特定领域语言)语句查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、分布式集群及分布式存储"><span class="nav-text">六、分布式集群及分布式存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、文档相关操作"><span class="nav-text">七、文档相关操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-文档的元数据"><span class="nav-text">1. 文档的元数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-新增文档"><span class="nav-text">2. 新增文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-检索文档"><span class="nav-text">3. 检索文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-更新整个文档"><span class="nav-text">4. 更新整个文档</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、搜索-基本的工具"><span class="nav-text">八、搜索(基本的工具)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九、映射及分析"><span class="nav-text">九、映射及分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段-all是string类型"><span class="nav-text">1. Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段_all是string类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-确切值-Exact-values-和全文文本-Full-text"><span class="nav-text">2. 确切值(Exact values)和全文文本(Full text)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-分析和分析器"><span class="nav-text">3. 分析和分析器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-映射"><span class="nav-text">4. 映射</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Elasticsearch笔记（一）"><span class="nav-text">Elasticsearch笔记（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、概述"><span class="nav-text">一、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、下载与安装"><span class="nav-text">二、下载与安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Cluster、Node、Index、Type、Document和Field"><span class="nav-text">三、Cluster、Node、Index、Type、Document和Field</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、与Elasticsearch交互"><span class="nav-text">四、与Elasticsearch交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、ES快速入门"><span class="nav-text">五、ES快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建三个员工"><span class="nav-text">1. 创建三个员工</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-根据id操作员工信息"><span class="nav-text">2. 根据id操作员工信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-简单搜索"><span class="nav-text">3. 简单搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-使用DSL-Domain-Specific-Language-特定领域语言-语句查询"><span class="nav-text">4. 使用DSL(Domain Specific Language,特定领域语言)语句查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、分布式集群及分布式存储"><span class="nav-text">六、分布式集群及分布式存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、文档相关操作"><span class="nav-text">七、文档相关操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-文档的元数据"><span class="nav-text">1. 文档的元数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-新增文档"><span class="nav-text">2. 新增文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-检索文档"><span class="nav-text">3. 检索文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-更新整个文档"><span class="nav-text">4. 更新整个文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-创建一个新文档"><span class="nav-text">5. 创建一个新文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-删除文档"><span class="nav-text">6. 删除文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-Elasticsearch版本控制"><span class="nav-text">7. Elasticsearch版本控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-带版本控制的操作"><span class="nav-text">8. 带版本控制的操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-文档局部更新-本质上同更新整个文档"><span class="nav-text">9. 文档局部更新(本质上同更新整个文档)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-检索多个文档-mget-API"><span class="nav-text">10. 检索多个文档(mget API)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-更省时的批量操作"><span class="nav-text">11. 更省时的批量操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、搜索-基本的工具"><span class="nav-text">八、搜索(基本的工具)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九、映射及分析"><span class="nav-text">九、映射及分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段-all是string类型"><span class="nav-text">1. Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段_all是string类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-确切值-Exact-values-和全文文本-Full-text"><span class="nav-text">2. 确切值(Exact values)和全文文本(Full text)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-分析和分析器"><span class="nav-text">3. 分析和分析器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-映射"><span class="nav-text">4. 映射</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1279,7 +1323,7 @@
     
       <span class="post-meta-item-text">网站字数统计&#58;</span>
     
-    <span title="网站字数统计">37.3k 字</span>
+    <span title="网站字数统计">37.6k 字</span>
   
 </div>
 
