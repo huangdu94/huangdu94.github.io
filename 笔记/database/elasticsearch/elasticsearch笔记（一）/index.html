@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="Elasticsearch笔记（一）一、概述 Elasticsearch是一个实时分布式搜索和分析引擎。它让你以前所未有的速度处理大数据成为可能 Elasticsearch是一个基于Apache Lucene(TM)的开源搜索引擎。无论在开源还是专有领域，Lucene可以被认为是迄今为止最先进、性能最好的、功能最全的搜索引擎库  二、下载与安装 安装Elasticsearch唯一的要求是安装Jav">
+<meta name="description" content="Elasticsearch笔记（一）一、概述 Elasticsearch是一个实时分布式搜索和分析引擎，它让你以前所未有的速度处理大数据成为可能 Elasticsearch是一个基于Apache Lucene(TM)的开源搜索引擎 无论在开源还是专有领域，Lucene可以被认为是迄今为止最先进、性能最好的、功能最全的搜索引擎库  二、下载与安装 安装Elasticsearch唯一的要求是安装jav">
 <meta name="keywords" content="elasticsearch,非关系型数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Elasticsearch笔记（一）">
 <meta property="og:url" content="https://huangdu94.club/笔记/database/elasticsearch/elasticsearch笔记（一）/index.html">
 <meta property="og:site_name" content="黄渡的个人博客">
-<meta property="og:description" content="Elasticsearch笔记（一）一、概述 Elasticsearch是一个实时分布式搜索和分析引擎。它让你以前所未有的速度处理大数据成为可能 Elasticsearch是一个基于Apache Lucene(TM)的开源搜索引擎。无论在开源还是专有领域，Lucene可以被认为是迄今为止最先进、性能最好的、功能最全的搜索引擎库  二、下载与安装 安装Elasticsearch唯一的要求是安装Jav">
+<meta property="og:description" content="Elasticsearch笔记（一）一、概述 Elasticsearch是一个实时分布式搜索和分析引擎，它让你以前所未有的速度处理大数据成为可能 Elasticsearch是一个基于Apache Lucene(TM)的开源搜索引擎 无论在开源还是专有领域，Lucene可以被认为是迄今为止最先进、性能最好的、功能最全的搜索引擎库  二、下载与安装 安装Elasticsearch唯一的要求是安装jav">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2020-01-23T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Elasticsearch笔记（一）">
-<meta name="twitter:description" content="Elasticsearch笔记（一）一、概述 Elasticsearch是一个实时分布式搜索和分析引擎。它让你以前所未有的速度处理大数据成为可能 Elasticsearch是一个基于Apache Lucene(TM)的开源搜索引擎。无论在开源还是专有领域，Lucene可以被认为是迄今为止最先进、性能最好的、功能最全的搜索引擎库  二、下载与安装 安装Elasticsearch唯一的要求是安装Jav">
+<meta name="twitter:description" content="Elasticsearch笔记（一）一、概述 Elasticsearch是一个实时分布式搜索和分析引擎，它让你以前所未有的速度处理大数据成为可能 Elasticsearch是一个基于Apache Lucene(TM)的开源搜索引擎 无论在开源还是专有领域，Lucene可以被认为是迄今为止最先进、性能最好的、功能最全的搜索引擎库  二、下载与安装 安装Elasticsearch唯一的要求是安装jav">
 
 
 
@@ -446,7 +446,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5.7k 字
+                  5.6k 字
                 </span>
               
 
@@ -484,22 +484,25 @@
 
       
         <h2 id="Elasticsearch笔记（一）"><a href="#Elasticsearch笔记（一）" class="headerlink" title="Elasticsearch笔记（一）"></a>Elasticsearch笔记（一）</h2><h3 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h3><ul>
-<li>Elasticsearch是一个实时分布式搜索和分析引擎。它让你以前所未有的速度处理大数据成为可能</li>
-<li>Elasticsearch是一个基于Apache Lucene(TM)的开源搜索引擎。无论在开源还是专有领域，Lucene可以被认为是迄今为止最先进、性能最好的、功能最全的搜索引擎库</li>
+<li>Elasticsearch是一个实时分布式搜索和分析引擎，它让你以前所未有的速度处理大数据成为可能</li>
+<li>Elasticsearch是一个基于Apache Lucene(TM)的开源搜索引擎</li>
+<li>无论在开源还是专有领域，Lucene可以被认为是迄今为止最先进、性能最好的、功能最全的搜索引擎库</li>
 </ul>
 <h3 id="二、下载与安装"><a href="#二、下载与安装" class="headerlink" title="二、下载与安装"></a>二、下载与安装</h3><ul>
-<li>安装Elasticsearch唯一的要求是安装Java，地址：<a href="www.java.com">java</a></li>
-<li>你可以从<a href="elasticsearch.org/download">elasticsearch</a>下载最新版本的Elasticsearch</li>
-<li><code>./bin/elasticsearch -d</code> 后台运行</li>
-<li><code>curl &#39;http://localhost:9200/?pretty&#39;</code> 查看es是否正常运行</li>
-<li><code>curl -XPOST &#39;http://localhost:9200/_shutdown&#39;</code> 关闭es</li>
+<li>安装Elasticsearch唯一的要求是安装<a href="www.java.com">java</a></li>
+<li>你可以下载最新版本的<a href="elasticsearch.org/download">elasticsearch</a></li>
+<li>后台运行 <code>./bin/elasticsearch -d</code></li>
+<li>查看es是否正常运行 <code>curl &#39;http://localhost:9200/?pretty&#39;</code></li>
+<li>关闭es <code>curl -XPOST &#39;http://localhost:9200/_shutdown&#39;</code></li>
 </ul>
 <h3 id="三、Cluster、Node、Index、Type、Document和Field"><a href="#三、Cluster、Node、Index、Type、Document和Field" class="headerlink" title="三、Cluster、Node、Index、Type、Document和Field"></a>三、Cluster、Node、Index、Type、Document和Field</h3><ul>
 <li>Elastic本质上是一个分布式数据库，允许多台服务器协同工作，每台服务器可以运行多个Elastic实例</li>
-<li>单个Elastic实例称为一个节点(node)。一组节点构成一个集群(cluster)</li>
-<li>Elastic会索引所有字段，经过处理后写入一个反向索引(Inverted Index)。查找数据的时候，直接查找该索引。所以，Elastic数据管理的顶层单位就叫做Index(索引)。它是单个数据库的同义词。每个Index(即数据库)的名字必须是小写</li>
-<li>Index里面单条的记录称为Document(文档)。许多条Document构成了一个Index。Document使用JSON格式表示</li>
-<li>Document可以分组，这种分组就叫做Type，它是虚拟的逻辑分组，用来过滤Document。不同的Type应该有相似的结构(schema)，举例来说，id字段不能在这个组是字符串，在另一个组是数值。这是与关系型数据库的表的一个区别。性质完全不同的数据(比如products和logs)应该存成两个Index，而不是一个Index里面的两个Type(虽然可以做到)<table>
+<li>单个Elastic实例称为一个节点(node)，一组节点构成一个集群(cluster)</li>
+<li>Elastic数据管理的顶层单位就叫做Index(索引)，相当于单个数据库，每个Index(即数据库)的名字必须是小写(Elastic会索引所有字段，经过处理后写入一个反向索引(Inverted Index)，查找数据的时候，直接查找该索引)</li>
+<li>Index里面单条的记录称为Document(文档)，许多条Document构成了一个Index，Document使用JSON格式表示</li>
+<li>Document可以分组，这种分组就叫做Type，它是虚拟的逻辑分组，用来过滤Document，不同的Type应该有相似的结构(schema)</li>
+<li>id字段不能在这个组是字符串，在另一个组是数值，这是与关系型数据库的表的一个区别，性质完全不同的数据(比如products和logs)应该存成两个Index，而不是一个Index里面的两个Type(虽然可以做到)</li>
+<li>Elastic与关系数据库的对比  <table>
 <thead>
 <tr>
 <th align="center">关系数据库</th>
@@ -519,86 +522,68 @@
 </tbody></table>
 </li>
 </ul>
-<h3 id="四、Java-API连接ES"><a href="#四、Java-API连接ES" class="headerlink" title="四、Java API连接ES"></a>四、Java API连接ES</h3><ul>
-<li>Java连接ES(即获得ES的Client)，Elasticsearch创建Client有几种方式。首先在Elasticsearch的配置文件elasticsearch.yml中定义cluster.name</li>
-</ul>
-<ol>
-<li><p>创建方式一：节点方式创建</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Node node = NodeBuilder().clusterName(<span class="string">"yourclustername"</span>).node();</span><br><span class="line">Client client = node.client();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建方式二：指定ip地址创建</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Client client = TransportClient.builder().build()</span><br><span class="line">.addTransportAddress(<span class="keyword">new</span> InetSocketTransportAddress(InetAddress.getByName(<span class="string">"host1"</span>), <span class="number">9300</span>));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建方式三：按集群名称创建</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Settings settings = Settings.settingsBuilder()</span><br><span class="line">.put(<span class="string">"cluster.name"</span>, <span class="string">"sojson-application"</span>).build();</span><br><span class="line">Client client = TransportClient.builder().settings(settings).build();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建方式四：同一内网Ip段，嗅的方式自己查找，组成集群</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Settings settings = Settings.settingsBuilder()</span><br><span class="line">.put(<span class="string">"client.transport.sniff"</span>, <span class="keyword">true</span>).build();</span><br><span class="line">TransportClient client = TransportClient.builder().settings(settings).build();</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="五、与Elasticsearch交互"><a href="#五、与Elasticsearch交互" class="headerlink" title="五、与Elasticsearch交互"></a>五、与Elasticsearch交互</h3><ul>
+<h3 id="四、与Elasticsearch交互"><a href="#四、与Elasticsearch交互" class="headerlink" title="四、与Elasticsearch交互"></a>四、与Elasticsearch交互</h3><ul>
 <li>基于HTTP协议，以JSON为数据交互格式的RESTful API</li>
 <li><code>curl -X&lt;VERB&gt; &lt;PROTOCOL&gt;://&lt;HOST&gt;/&lt;PORT&gt;?&lt;QUERY_STRING&gt; -d &lt;BODY&gt;</code><ul>
 <li><code>VERB</code> http方法:<code>GET</code>,<code>POST</code>,<code>PUT</code>,<code>HEAD</code>,<code>DELETE</code></li>
-<li><code>PROTOCOL</code> http或https协议(只有在Elasticsearch前面有https代理的时候可用)</li>
-<li><code>HOST</code> Elasticsearch集群中的任何一个节点的主机名，如果是在本地的节点，那么就叫localhost</li>
-<li><code>PORT</code> Elasticsearch HTTP服务所在的端口，默认为9200</li>
+<li><code>PROTOCOL</code> <code>http</code>或<code>https</code>协议(只有在Elasticsearch前面有https代理的时候可用)</li>
+<li><code>HOST</code> Elasticsearch集群中的任何一个节点的主机名，如果是在本地的节点，那么就叫<code>localhost</code></li>
+<li><code>PORT</code> Elasticsearch HTTP服务所在的端口，默认为<code>9200</code></li>
 <li><code>QUERY_STRING</code> 一些可选的查询请求参数，例如<code>?pretty</code>参数将使请求返回更加美观易读的JSON数据</li>
 <li><code>BODY</code> 一个JSON格式的请求主体(如果请求需要的话)</li>
 </ul>
 </li>
 <li>linux利用<code>curl</code>命令注意<code>-d</code>后面的参数部分有些特殊字符需要转义(例<code>,</code>)</li>
-<li>linux利用<code>curl</code>命令，请求体可放在文件中 <code>curl -XPOST http://localhost:9200/_bulk --data-binary @requests</code>(bulk API需要，其中requests为请求体文件)</li>
-<li>计算集群中的文档数量(简写形式，省略<code>PROTOCOL</code> <code>HOST</code> <code>PORT</code>) <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /_count</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match_all&quot;: &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>linux利用<code>curl</code>命令，请求体可放在文件中 <code>curl -XPOST http://localhost:9200/_bulk --data-binary @requests</code>(bulk API需要，其中<code>requests</code>为请求体文件)</li>
+<li>简写表示形式，省略<code>PROTOCOL</code>,<code>HOST</code>,<code>PORT</code>(计算集群中的文档数量) <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /_count</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match_all&quot;: &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<h3 id="六、ES简单教程-ES功能概览"><a href="#六、ES简单教程-ES功能概览" class="headerlink" title="六、ES简单教程(ES功能概览)"></a>六、ES简单教程(ES功能概览)</h3><h4 id="1-创建三个员工"><a href="#1-创建三个员工" class="headerlink" title="1. 创建三个员工"></a>1. 创建三个员工</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">PUT /megacorp/employee/1</span><br><span class="line">&#123;</span><br><span class="line">  &quot;first_name&quot; : &quot;John&quot;,</span><br><span class="line">  &quot;last_name&quot; : &quot;Smith&quot;,</span><br><span class="line">  &quot;age&quot; : 25,</span><br><span class="line">  &quot;about&quot; : &quot;I love to go rock climbing&quot;,</span><br><span class="line">  &quot;interests&quot;: [ &quot;sports&quot;, &quot;music&quot; ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PUT /megacorp/employee/2</span><br><span class="line">&#123;</span><br><span class="line">  &quot;first_name&quot; : &quot;Jane&quot;,</span><br><span class="line">  &quot;last_name&quot; : &quot;Smith&quot;,</span><br><span class="line">  &quot;age&quot; : 32,</span><br><span class="line">  &quot;about&quot; : &quot;I like to collect rock albums&quot;,</span><br><span class="line">  &quot;interests&quot;: [ &quot;music&quot; ]</span><br><span class="line">&#125; </span><br><span class="line">    </span><br><span class="line">PUT /megacorp/employee/3</span><br><span class="line">&#123;</span><br><span class="line">  &quot;first_name&quot; : &quot;Douglas&quot;,</span><br><span class="line">  &quot;last_name&quot; : &quot;Fir&quot;,</span><br><span class="line">  &quot;age&quot; : 35,</span><br><span class="line">  &quot;about&quot;: &quot;I like to build cabinets&quot;,</span><br><span class="line">  &quot;interests&quot;: [ &quot;forestry&quot; ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="五、ES快速入门"><a href="#五、ES快速入门" class="headerlink" title="五、ES快速入门"></a>五、ES快速入门</h3><h4 id="1-创建三个员工"><a href="#1-创建三个员工" class="headerlink" title="1. 创建三个员工"></a>1. 创建三个员工</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">PUT /iflytek/employee/1</span><br><span class="line">&#123;</span><br><span class="line">  &quot;first_name&quot; : &quot;John&quot;,</span><br><span class="line">  &quot;last_name&quot; : &quot;Smith&quot;,</span><br><span class="line">  &quot;age&quot; : 25,</span><br><span class="line">  &quot;about&quot; : &quot;I love to go rock climbing&quot;,</span><br><span class="line">  &quot;interests&quot;: [ &quot;sports&quot;, &quot;music&quot; ]</span><br><span class="line">&#125;</span><br><span class="line">PUT /iflytek/employee/2</span><br><span class="line">&#123;</span><br><span class="line">  &quot;first_name&quot; : &quot;Jane&quot;,</span><br><span class="line">  &quot;last_name&quot; : &quot;Smith&quot;,</span><br><span class="line">  &quot;age&quot; : 32,</span><br><span class="line">  &quot;about&quot; : &quot;I like to collect rock albums&quot;,</span><br><span class="line">  &quot;interests&quot;: [ &quot;music&quot; ]</span><br><span class="line">&#125;</span><br><span class="line">PUT /iflytek/employee/3</span><br><span class="line">&#123;</span><br><span class="line">  &quot;first_name&quot; : &quot;Douglas&quot;,</span><br><span class="line">  &quot;last_name&quot; : &quot;Fir&quot;,</span><br><span class="line">  &quot;age&quot; : 35,</span><br><span class="line">  &quot;about&quot;: &quot;I like to build cabinets&quot;,</span><br><span class="line">  &quot;interests&quot;: [ &quot;forestry&quot; ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-根据id操作员工信息"><a href="#2-根据id操作员工信息" class="headerlink" title="2. 根据id操作员工信息"></a>2. 根据id操作员工信息</h4><ul>
-<li><code>GET /megacorp/employee/1</code> 查</li>
-<li><code>DELETE /megacorp/employee/1</code> 删</li>
-<li><code>PUT /megacorp/employee/1</code> 改</li>
-<li><code>HEAD /megacorp/employee/1</code> 检查某文档是否存在(<code>curl</code>使用时加<code>-i</code>参数，信息在响应头中)</li>
+<li><code>GET /iflytek/employee/1</code> 查</li>
+<li><code>DELETE /iflytek/employee/1</code> 删</li>
+<li><code>PUT /iflytek/employee/1</code> 改</li>
+<li><code>HEAD /iflytek/employee/1</code> 检查某文档是否存在(<code>curl</code>使用时加<code>-i</code>参数，信息在响应头中)</li>
 </ul>
 <h4 id="3-简单搜索"><a href="#3-简单搜索" class="headerlink" title="3. 简单搜索"></a>3. 简单搜索</h4><ul>
-<li><code>GET /megacorp/employee/_search</code> 默认情况下搜索会返回前10个结果</li>
-<li><code>GET /megacorp/employee/_search?q=last_name:Smith</code> 查询字符串(query string)搜索，轻量级搜索</li>
-<li><code>GET /megacorp/employee/_search?q=age[30 TO 60]&amp;sort=age:desc&amp;from=0&amp;size=2</code> 查询年龄为30-60之间，降序排序，分页查询</li>
+<li><code>GET /iflytek/employee/_search</code> 默认情况下搜索会返回前10个结果</li>
+<li><code>GET /iflytek/employee/_search?q=last_name:Smith</code> 查询字符串(query string)搜索，轻量级搜索</li>
+<li><code>GET /iflytek/employee/_search?q=age[30 TO 60]&amp;sort=age:desc&amp;from=0&amp;size=2</code> 查询年龄为30-60之间，降序排序，分页查询</li>
 </ul>
 <h4 id="4-使用DSL-Domain-Specific-Language-特定领域语言-语句查询"><a href="#4-使用DSL-Domain-Specific-Language-特定领域语言-语句查询" class="headerlink" title="4. 使用DSL(Domain Specific Language,特定领域语言)语句查询"></a>4. 使用DSL(Domain Specific Language,特定领域语言)语句查询</h4><ol>
 <li><p>搜索指定字段值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /megacorp/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;match&quot; : &#123;</span><br><span class="line">      &quot;last_name&quot; : &quot;Smith&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /iflytek/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;match&quot; : &#123;</span><br><span class="line">      &quot;last_name&quot; : &quot;Smith&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>搜索范围</p>
 <ul>
-<li>&lt;1&gt;这部分查询属于区间过滤器(range filter)，它用于查找所有年龄大于30岁的数据，gt为”greater than”的缩写</li>
-<li>&lt;2&gt;这部分查询与之前的match语句(query)一致<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">GET /megacorp/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;filtered&quot; : &#123;</span><br><span class="line">      &quot;filter&quot; : &#123;</span><br><span class="line">        &quot;range&quot; : &#123;</span><br><span class="line">          &quot;age&quot; : &#123; &quot;gt&quot; : 30 &#125; &lt;1&gt;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;query&quot; : &#123;</span><br><span class="line">        &quot;match&quot; : &#123;</span><br><span class="line">          &quot;last_name&quot; : &quot;smith&quot; &lt;2&gt;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>&lt;1&gt;查询属于区间过滤器(range filter)，<code>gt</code>为”greater than”的缩写</li>
+<li>&lt;2&gt;查询与之前的match语句(query)一致<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">GET /iflytek/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;filtered&quot; : &#123;</span><br><span class="line">      &quot;filter&quot; : &#123;</span><br><span class="line">        &quot;range&quot; : &#123;</span><br><span class="line">          &quot;age&quot; : &#123; &quot;gt&quot; : 30 &#125; &lt;1&gt;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;query&quot; : &#123;</span><br><span class="line">        &quot;match&quot; : &#123;</span><br><span class="line">          &quot;last_name&quot; : &quot;smith&quot; &lt;2&gt;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 <li><p>全文搜索</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /megacorp/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;match&quot; : &#123;</span><br><span class="line">      &quot;about&quot; : &quot;rock climbing&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /iflytek/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;match&quot; : &#123;</span><br><span class="line">      &quot;about&quot; : &quot;rock climbing&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>短语搜索(比全文搜索更具有针对性)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /megacorp/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;match_phrase&quot; : &#123;</span><br><span class="line">      &quot;about&quot; : &quot;rock climbing&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /iflytek/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;match_phrase&quot; : &#123;</span><br><span class="line">      &quot;about&quot; : &quot;rock climbing&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>高亮搜索结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">GET /megacorp/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;match_phrase&quot; : &#123;</span><br><span class="line">      &quot;about&quot; : &quot;rock climbing&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;highlight&quot;: &#123;</span><br><span class="line">    &quot;fields&quot; : &#123;</span><br><span class="line">      &quot;about&quot; : &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">GET /iflytek/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;match_phrase&quot; : &#123;</span><br><span class="line">      &quot;about&quot; : &quot;rock climbing&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;highlight&quot;: &#123;</span><br><span class="line">    &quot;fields&quot; : &#123;</span><br><span class="line">      &quot;about&quot; : &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>分析，聚合查询</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /megacorp/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;aggs&quot;: &#123;</span><br><span class="line">    &quot;all_interests&quot;: &#123;</span><br><span class="line">      &quot;terms&quot;: &#123; &quot;field&quot;: &quot;interests&quot; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET /iflytek/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;aggs&quot;: &#123;</span><br><span class="line">    &quot;all_interests&quot;: &#123;</span><br><span class="line">      &quot;terms&quot;: &#123; &quot;field&quot;: &quot;interests&quot; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>聚合和精确查询组合</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">GET /megacorp/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match&quot;: &#123;</span><br><span class="line">      &quot;last_name&quot;: &quot;smith&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;aggs&quot;: &#123;</span><br><span class="line">    &quot;all_interests&quot;: &#123;</span><br><span class="line">      &quot;terms&quot;: &#123;</span><br><span class="line">        &quot;field&quot;: &quot;interests&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">GET /iflytek/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match&quot;: &#123;</span><br><span class="line">      &quot;last_name&quot;: &quot;smith&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;aggs&quot;: &#123;</span><br><span class="line">    &quot;all_interests&quot;: &#123;</span><br><span class="line">      &quot;terms&quot;: &#123;</span><br><span class="line">        &quot;field&quot;: &quot;interests&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>分级汇总(统计每种兴趣下职员的平均年龄)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">GET /megacorp/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;aggs&quot; : &#123;</span><br><span class="line">    &quot;all_interests&quot; : &#123;</span><br><span class="line">      &quot;terms&quot; : &#123; </span><br><span class="line">        &quot;field&quot; : &quot;interests&quot; </span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;aggs&quot; : &#123;</span><br><span class="line">        &quot;avg_age&quot; : &#123;</span><br><span class="line">          &quot;avg&quot; : &#123; </span><br><span class="line">            &quot;field&quot; : &quot;age&quot; </span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">GET /iflytek/employee/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;aggs&quot; : &#123;</span><br><span class="line">    &quot;all_interests&quot; : &#123;</span><br><span class="line">      &quot;terms&quot; : &#123; </span><br><span class="line">        &quot;field&quot; : &quot;interests&quot; </span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;aggs&quot; : &#123;</span><br><span class="line">        &quot;avg_age&quot; : &#123;</span><br><span class="line">          &quot;avg&quot; : &#123; </span><br><span class="line">            &quot;field&quot; : &quot;age&quot; </span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<h3 id="七、分布式集群及分布式存储"><a href="#七、分布式集群及分布式存储" class="headerlink" title="七、分布式集群及分布式存储"></a>七、分布式集群及分布式存储</h3><ul>
+<h3 id="六、分布式集群及分布式存储"><a href="#六、分布式集群及分布式存储" class="headerlink" title="六、分布式集群及分布式存储"></a>六、分布式集群及分布式存储</h3><ul>
 <li>集群健康 <code>GET /_cluster/health</code></li>
 <li>创建索引(设置主分片数<code>number_of_shards</code>和复制分片数<code>number_of_replicas</code>)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PUT /website</span><br><span class="line">&#123;</span><br><span class="line">  &quot;settings&quot; : &#123;</span><br><span class="line">    &quot;number_of_shards&quot; : 3,</span><br><span class="line">    &quot;number_of_replicas&quot; : 1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -606,7 +591,7 @@
 <ol>
 <li><code>routing</code>参数<ul>
 <li><code>shard = hash(routing) % number_of_primary_shards</code> 计算文档属于哪个分片</li>
-<li><code>get</code> <code>index</code> <code>delete</code> <code>bulk</code> <code>update</code> <code>mget</code> 都接收一个<code>routing</code>参数，它用来自定义文档到分片的映射</li>
+<li><code>get</code>,<code>index</code>,<code>delete</code>,<code>bulk</code>,<code>update</code>,<code>mget</code>都可接收一个<code>routing</code>参数，它用来自定义文档到分片的映射</li>
 </ul>
 </li>
 <li><code>replication</code>参数<ul>
@@ -622,40 +607,42 @@
 </li>
 <li><code>timeout</code>参数<ul>
 <li>当分片副本不足时Elasticsearch会等待更多的分片出现，默认等待一分钟</li>
-<li>可以设置timeout 参数让它终止的更早：100表示100毫秒，30s表示30秒</li>
+<li>可以设置<code>timeout</code>参数让它终止的更早，<code>100</code>表示100毫秒，<code>30s</code>表示30秒</li>
 </ul>
 </li>
 </ol>
 <ul>
-<li><p>update API接受<code>routing</code> <code>replication</code> <code>consistency</code>和<code>timout</code>参数</p>
+<li><p><code>update</code>API接受<code>routing</code>,<code>replication</code>,<code>consistency</code>和<code>timout</code>参数</p>
 </li>
-<li><p>mget API <code>routing</code>参数可以被docs中的每个文档设置</p>
+<li><p><code>mget</code>API的<code>routing</code>参数可以被docs中的每个文档设置</p>
 </li>
-<li><p>bulk API还可以在最上层使用<code>replication</code>和<code>consistency</code>参数，<code>routing</code>参数则在每个请求的元数据中使用</p>
+<li><p><code>bulk</code>API还可以在最上层使用<code>replication</code>和<code>consistency</code>参数，<code>routing</code>参数则在每个请求的元数据中使用</p>
 </li>
-<li><p>切换主分片节点</p>
+<li><p>手动分配分片所在节点的方式</p>
 <ol>
-<li><p><code>curl -XPUT 10.3.172.112:9200/_cluster/settings -d&#39;{&quot;transient&quot;:{&quot;cluster.routing.allocation.enable&quot;:&quot;none&quot;}}&#39;</code></p>
+<li><p>关闭分片自动分配所在节点(改为<code>all</code>开启)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   PUT 10.3.172.112:9200/_cluster/settings</span><br><span class="line">   &#123;</span><br><span class="line">     &quot;transient&quot;:&#123;</span><br><span class="line">    &quot;cluster.routing.allocation.enable&quot;:&quot;none&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">POST /_cluster/reroute</span><br><span class="line">&#123;</span><br><span class="line">  &quot;commands&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;move&quot;: &#123;</span><br><span class="line">        &quot;index&quot;: &quot;website&quot;,</span><br><span class="line">        &quot;shard&quot;: 1,</span><br><span class="line">        &quot;from_node&quot;: &quot;10.3.172.112&quot;,</span><br><span class="line">        &quot;to_node&quot;: &quot;10.3.172.111&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>curl -XPUT 10.3.172.112:9200/_cluster/settings -d&#39;{&quot;transient&quot;:{&quot;cluster.routing.allocation.enable&quot;:&quot;all&quot;}}&#39;</code></p>
+<li><p>移动指定分片到指定节点  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">POST /_cluster/reroute</span><br><span class="line">&#123;</span><br><span class="line">  &quot;commands&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;move&quot;: &#123;</span><br><span class="line">        &quot;index&quot;: &quot;website&quot;,</span><br><span class="line">        &quot;shard&quot;: 1,</span><br><span class="line">        &quot;from_node&quot;: &quot;10.3.172.112&quot;,</span><br><span class="line">        &quot;to_node&quot;: &quot;10.3.172.111&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
 </li>
 </ol>
 </li>
 </ul>
-<h3 id="八、文档相关操作"><a href="#八、文档相关操作" class="headerlink" title="八、文档相关操作"></a>八、文档相关操作</h3><h4 id="1-文档"><a href="#1-文档" class="headerlink" title="1. 文档"></a>1. 文档</h4><ul>
+<h3 id="七、文档相关操作"><a href="#七、文档相关操作" class="headerlink" title="七、文档相关操作"></a>七、文档相关操作</h3><h4 id="1-文档的元数据"><a href="#1-文档的元数据" class="headerlink" title="1. 文档的元数据"></a>1. 文档的元数据</h4><ul>
 <li>一个文档不只有数据，它还包含了元数据(metadata):</li>
 <li><code>_index</code> 文档存储的地方</li>
 <li><code>_type</code> 文档代表的对象的类(每个类型type都有自己的映射mapping或者结构定义， 就像传统数据库表中的列一样)</li>
 <li><code>_id</code> 文档的唯一标识</li>
-<li>其它元数据(例: <code>_version</code>)</li>
+<li>其它元数据(例版本号<code>_version</code>)</li>
 </ul>
-<h4 id="2-索引一个文档"><a href="#2-索引一个文档" class="headerlink" title="2. 索引一个文档"></a>2. 索引一个文档</h4><ul>
-<li><p>指定id  </p>
+<h4 id="2-新增文档"><a href="#2-新增文档" class="headerlink" title="2. 新增文档"></a>2. 新增文档</h4><ul>
+<li><p>指定id新增  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PUT /website/blog/123</span><br><span class="line">&#123;</span><br><span class="line">  &quot;title&quot;: &quot;My first blog entry&quot;,</span><br><span class="line">  &quot;text&quot;: &quot;Still trying this out...&quot;,</span><br><span class="line">  &quot;date&quot;: &quot;2014/01/01&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>自增id</p>
+<li><p>自增id新增</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /website/blog/</span><br><span class="line">&#123;</span><br><span class="line">  &quot;title&quot;: &quot;My second blog entry&quot;,</span><br><span class="line">  &quot;text&quot;: &quot;Still trying this out...&quot;,</span><br><span class="line">  &quot;date&quot;: &quot;2014/01/02&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
@@ -736,7 +723,7 @@
 <li>最佳大小并不是一个固定的数字。它完全取决于你的硬件、你文档的大小和复杂度以及索引和搜索的负载</li>
 <li>一个好的批次最好保持在5-15MB大小间</li>
 </ul>
-<h3 id="九、搜索-基本的工具"><a href="#九、搜索-基本的工具" class="headerlink" title="九、搜索(基本的工具)"></a>九、搜索(基本的工具)</h3><ul>
+<h3 id="八、搜索-基本的工具"><a href="#八、搜索-基本的工具" class="headerlink" title="八、搜索(基本的工具)"></a>八、搜索(基本的工具)</h3><ul>
 <li>为了充分挖掘Elasticsearch的潜力，需要理解以下三个概念：<ol>
 <li>Mapping: 数据在每个字段中的解释说明</li>
 <li>Analysis: 全文是如何处理的可以被搜索的</li>
@@ -795,14 +782,14 @@
 </ul>
 </li>
 </ol>
-<h3 id="十、映射及分析"><a href="#十、映射及分析" class="headerlink" title="十、映射及分析"></a>十、映射及分析</h3><h4 id="1-Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段-all是string类型"><a href="#1-Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段-all是string类型" class="headerlink" title="1. Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段_all是string类型"></a>1. Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段<code>_all</code>是<code>string</code>类型</h4><h4 id="2-确切值-Exact-values-和全文文本-Full-text"><a href="#2-确切值-Exact-values-和全文文本-Full-text" class="headerlink" title="2. 确切值(Exact values)和全文文本(Full text)"></a>2. 确切值(Exact values)和全文文本(Full text)</h4><ol>
+<h3 id="九、映射及分析"><a href="#九、映射及分析" class="headerlink" title="九、映射及分析"></a>九、映射及分析</h3><h4 id="1-Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段-all是string类型"><a href="#1-Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段-all是string类型" class="headerlink" title="1. Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段_all是string类型"></a>1. Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段<code>_all</code>是<code>string</code>类型</h4><h4 id="2-确切值-Exact-values-和全文文本-Full-text"><a href="#2-确切值-Exact-values-和全文文本-Full-text" class="headerlink" title="2. 确切值(Exact values)和全文文本(Full text)"></a>2. 确切值(Exact values)和全文文本(Full text)</h4><ol>
 <li>为了方便在全文文本字段中进行这些类型的查询，Elasticsearch首先对文本分析(analyzes)，然后使用结果建立一个倒排索引</li>
 <li>Elasticsearch使用一种叫做倒排索引(inverted index)的结构来做快速的全文搜索。倒排索引由在文档中出现的唯一的单词列表，以及对于每个单词在文档中的位置组成</li>
 <li>为了创建倒排索引，我们首先切分每个文档的指定字段为单独的单词(<code>terms</code> <code>tokens</code>)把所有的唯一词放入列表并排序</li>
 <li>为了找到确实存在于索引中的词，索引文本和查询字符串都要标准化为相同的形式，这个表征化和标准化的过程叫做分词(analysis)</li>
 </ol>
 <h4 id="3-分析和分析器"><a href="#3-分析和分析器" class="headerlink" title="3. 分析和分析器"></a>3. 分析和分析器</h4><ul>
-<li><code>GET /megacorp/employee/1/_termvectors?fields=about</code>(查看指定文档指定字段分词情况)</li>
+<li><code>GET /iflytek/employee/1/_termvectors?fields=about</code>(查看指定文档指定字段分词情况)</li>
 <li>一个分析器(analyzer)只是一个包装用于将三个功能放到一个包里<ol>
 <li>字符串经过字符过滤器(character filter)，它们的工作是在表征化前处理字符串。字符过滤器能够去除HTML标记，或者转换 “&amp;” 为 “and” </li>
 <li>分词器(tokenizer)将字符串表征化为独立的词(断词)。一个简单的分词器(tokenizer)可以根据空格或逗号将单词分开</li>
@@ -819,7 +806,7 @@
 </li>
 <li>测试分析器<ul>
 <li>指定分词器分词<br><code>POST /_analyze?analyzer=standard {&quot;text&quot;: &quot;text content&quot;}</code></li>
-<li>使用指定字段分词器分词<br><code>POST /megacorp/_analyze?field=about {&quot;text&quot;: &quot;text content&quot;}</code></li>
+<li>使用指定字段分词器分词<br><code>POST /iflytek/_analyze?field=about {&quot;text&quot;: &quot;text content&quot;}</code></li>
 </ul>
 </li>
 <li>指定分析器 当Elasticsearch在你的文档中探测到一个新的字符串字段，它将自动设置它为全文string字段并用standard分析器分析(可以通过映射<code>mapping</code>设置)</li>
@@ -1251,7 +1238,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Elasticsearch笔记（一）"><span class="nav-text">Elasticsearch笔记（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、概述"><span class="nav-text">一、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、下载与安装"><span class="nav-text">二、下载与安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Cluster、Node、Index、Type、Document和Field"><span class="nav-text">三、Cluster、Node、Index、Type、Document和Field</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、Java-API连接ES"><span class="nav-text">四、Java API连接ES</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、与Elasticsearch交互"><span class="nav-text">五、与Elasticsearch交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、ES简单教程-ES功能概览"><span class="nav-text">六、ES简单教程(ES功能概览)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建三个员工"><span class="nav-text">1. 创建三个员工</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-根据id操作员工信息"><span class="nav-text">2. 根据id操作员工信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-简单搜索"><span class="nav-text">3. 简单搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-使用DSL-Domain-Specific-Language-特定领域语言-语句查询"><span class="nav-text">4. 使用DSL(Domain Specific Language,特定领域语言)语句查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、分布式集群及分布式存储"><span class="nav-text">七、分布式集群及分布式存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、文档相关操作"><span class="nav-text">八、文档相关操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-文档"><span class="nav-text">1. 文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-索引一个文档"><span class="nav-text">2. 索引一个文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-检索文档"><span class="nav-text">3. 检索文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-更新整个文档"><span class="nav-text">4. 更新整个文档</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九、搜索-基本的工具"><span class="nav-text">九、搜索(基本的工具)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十、映射及分析"><span class="nav-text">十、映射及分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段-all是string类型"><span class="nav-text">1. Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段_all是string类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-确切值-Exact-values-和全文文本-Full-text"><span class="nav-text">2. 确切值(Exact values)和全文文本(Full text)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-分析和分析器"><span class="nav-text">3. 分析和分析器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-映射"><span class="nav-text">4. 映射</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Elasticsearch笔记（一）"><span class="nav-text">Elasticsearch笔记（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、概述"><span class="nav-text">一、概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、下载与安装"><span class="nav-text">二、下载与安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Cluster、Node、Index、Type、Document和Field"><span class="nav-text">三、Cluster、Node、Index、Type、Document和Field</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、与Elasticsearch交互"><span class="nav-text">四、与Elasticsearch交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、ES快速入门"><span class="nav-text">五、ES快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建三个员工"><span class="nav-text">1. 创建三个员工</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-根据id操作员工信息"><span class="nav-text">2. 根据id操作员工信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-简单搜索"><span class="nav-text">3. 简单搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-使用DSL-Domain-Specific-Language-特定领域语言-语句查询"><span class="nav-text">4. 使用DSL(Domain Specific Language,特定领域语言)语句查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、分布式集群及分布式存储"><span class="nav-text">六、分布式集群及分布式存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、文档相关操作"><span class="nav-text">七、文档相关操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-文档的元数据"><span class="nav-text">1. 文档的元数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-新增文档"><span class="nav-text">2. 新增文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-检索文档"><span class="nav-text">3. 检索文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-更新整个文档"><span class="nav-text">4. 更新整个文档</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、搜索-基本的工具"><span class="nav-text">八、搜索(基本的工具)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九、映射及分析"><span class="nav-text">九、映射及分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段-all是string类型"><span class="nav-text">1. Elasticsearch为对字段类型进行猜测，动态生成了字段和类型的映射关系。默认字段_all是string类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-确切值-Exact-values-和全文文本-Full-text"><span class="nav-text">2. 确切值(Exact values)和全文文本(Full text)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-分析和分析器"><span class="nav-text">3. 分析和分析器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-映射"><span class="nav-text">4. 映射</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1292,7 +1279,7 @@
     
       <span class="post-meta-item-text">网站字数统计&#58;</span>
     
-    <span title="网站字数统计">37.5k 字</span>
+    <span title="网站字数统计">37.3k 字</span>
   
 </div>
 
