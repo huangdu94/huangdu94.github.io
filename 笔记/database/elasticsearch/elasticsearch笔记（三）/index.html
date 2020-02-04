@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="elasticsearch,非关系型数据库,">
 
 
 
@@ -83,17 +83,18 @@
 
 
 
-<meta name="description" content="我喜欢敲代码。I like programming.">
-<meta name="keywords" content="Java,程序,技术,IT,计算机">
-<meta property="og:type" content="website">
-<meta property="og:title" content="黄渡的个人博客">
-<meta property="og:url" content="https://huangdu94.club/tags/泛型/index.html">
+<meta name="description" content="Elasticsearch笔记（三）十、分片内部原理1. 使文本可被搜索 传统的数据库每个字段存储单个值，但这对全文检索并不够。文本字段中的每个单词需要被搜索，对数据库意味着需要单个字段有索引多个值的能力(单词) 最好的支持一个字段多个值需求的数据结构是倒排索引(inverted-index)。倒排索引包含一个有序列表，列表包含所有文档出现过的不重复词项，对于每一个词项，包含了它所有曾出现过文档的">
+<meta name="keywords" content="elasticsearch,非关系型数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Elasticsearch笔记（三）">
+<meta property="og:url" content="https://huangdu94.club/笔记/database/elasticsearch/elasticsearch笔记（三）/index.html">
 <meta property="og:site_name" content="黄渡的个人博客">
-<meta property="og:description" content="我喜欢敲代码。I like programming.">
+<meta property="og:description" content="Elasticsearch笔记（三）十、分片内部原理1. 使文本可被搜索 传统的数据库每个字段存储单个值，但这对全文检索并不够。文本字段中的每个单词需要被搜索，对数据库意味着需要单个字段有索引多个值的能力(单词) 最好的支持一个字段多个值需求的数据结构是倒排索引(inverted-index)。倒排索引包含一个有序列表，列表包含所有文档出现过的不重复词项，对于每一个词项，包含了它所有曾出现过文档的">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-03T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="黄渡的个人博客">
-<meta name="twitter:description" content="我喜欢敲代码。I like programming.">
+<meta name="twitter:title" content="Elasticsearch笔记（三）">
+<meta name="twitter:description" content="Elasticsearch笔记（三）十、分片内部原理1. 使文本可被搜索 传统的数据库每个字段存储单个值，但这对全文检索并不够。文本字段中的每个单词需要被搜索，对数据库意味着需要单个字段有索引多个值的能力(单词) 最好的支持一个字段多个值需求的数据结构是倒排索引(inverted-index)。倒排索引包含一个有序列表，列表包含所有文档出现过的不重复词项，对于每一个词项，包含了它所有曾出现过文档的">
 
 
 
@@ -123,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://huangdu94.club/tags/泛型/">
+  <link rel="canonical" href="https://huangdu94.club/笔记/database/elasticsearch/elasticsearch笔记（三）/">
 
 
 
 
 
-  <title>标签: 泛型 | 黄渡的个人博客</title>
+  <title>Elasticsearch笔记（三） | 黄渡的个人博客</title>
   
 
 
@@ -167,7 +168,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -303,52 +304,401 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>泛型<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://huangdu94.club/笔记/database/elasticsearch/elasticsearch笔记（三）/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黄渡">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar-knj.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黄渡的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/笔记/java/面向对象/2-java笔记之面向对象篇/" itemprop="url">
-              
-                <span itemprop="name">java笔记之面向对象篇</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Elasticsearch笔记（三）</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-26T00:00:00+08:00" content="2019-10-26">
-          10-26
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+			
+			
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-04T00:00:00+08:00">
+                2020-02-04
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/database/" itemprop="url" rel="index">
+                    <span itemprop="name">database</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/database/elasticsearch/" itemprop="url" rel="index">
+                    <span itemprop="name">elasticsearch</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/笔记/database/elasticsearch/elasticsearch笔记（三）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/笔记/database/elasticsearch/elasticsearch笔记（三）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/笔记/database/elasticsearch/elasticsearch笔记（三）/" class="leancloud_visitors" data-flag-title="Elasticsearch笔记（三）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.4k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Elasticsearch笔记（三）"><a href="#Elasticsearch笔记（三）" class="headerlink" title="Elasticsearch笔记（三）"></a>Elasticsearch笔记（三）</h2><h3 id="十、分片内部原理"><a href="#十、分片内部原理" class="headerlink" title="十、分片内部原理"></a>十、分片内部原理</h3><h4 id="1-使文本可被搜索"><a href="#1-使文本可被搜索" class="headerlink" title="1. 使文本可被搜索"></a>1. 使文本可被搜索</h4><ul>
+<li>传统的数据库每个字段存储单个值，但这对全文检索并不够。文本字段中的每个单词需要被搜索，对数据库意味着需要单个字段有索引多个值的能力(单词)</li>
+<li>最好的支持一个字段多个值需求的数据结构是倒排索引(inverted-index)。倒排索引包含一个有序列表，列表包含所有文档出现过的不重复词项，对于每一个词项，包含了它所有曾出现过文档的列表</li>
+<li>早期的全文检索会为整个文档集合建立一个很大的倒排索引并将其写入到磁盘。一旦新的索引就绪，旧的就会被其替换，这样最近的变化便可以被检索到</li>
+</ul>
+<h4 id="2-不变性"><a href="#2-不变性" class="headerlink" title="2. 不变性"></a>2. 不变性</h4><ul>
+<li>倒排索引被写入磁盘后是不可改变的，它永远不会修改，不变性有重要的价值<ol>
+<li>不需要锁。如果你从来不更新索引，你就不需要担心多进程同时修改数据的问题</li>
+<li>一旦索引被读入内核的文件系统缓存，便会留在哪里，由于其不变性。只要文件系统缓存中还有足够的空间，那么大部分读请求会直接请求内存，而不会命中磁盘。这提供了很大的性能提升</li>
+<li>其它缓存(像filter缓存)，在索引的生命周期内始终有效。它们不需要在每次数据改变时被重建，因为数据不会变化</li>
+<li>写入单个大的倒排索引允许数据被压缩，减少磁盘I/O和需要被缓存到内存的索引的使用量</li>
+</ol>
+</li>
+<li>一个不变的索引也有不好的地方。如果你需要让一个新的文档可被搜索，你需要重建整个索引。这要么对一个索引所能包含的数据量造成了很大的限制，要么对索引可被更新的频率造成了很大的限制</li>
+</ul>
+<h4 id="3-动态更新索引"><a href="#3-动态更新索引" class="headerlink" title="3. 动态更新索引"></a>3. 动态更新索引</h4><ul>
+<li>通过增加新的补充索引来反映新近的修改，而不是直接重写整个倒排索引。每一个倒排索引都会被轮流查询到，从最早的开始，​查询完后再对结果进行合并</li>
+<li>Elasticsearch基于Lucene，一个Lucene索引我们在Elasticsearch称作分片，一个Elasticsearch索引是分片的集合。一个Lucene索引包含一个提交点和三个段，Lucene这个java库引入了按段搜索的概念，每一段本身都是一个倒排索引，但索引在Lucene中除表示所有段的集合外，还增加了一个列出了所有已知段的文件(提交点)</li>
+<li>当一个查询被触发，所有已知的段按顺序被查询。词项统计会对所有段的结果进行聚合，以保证每个词和每个文档的关联都被准确计算。这种方式可以用相对较低的成本将新文档添加到索引</li>
+<li>段是不可改变的，所以既不能从把文档从旧的段中移除，也不能修改旧的段来进行反映文档的更新。取而代之的是，每个提交点会包含一个<code>.del</code>文件，文件中会列出这些被删除文档的段信息</li>
+<li>当一个文档被删除或被更新时(相当于旧版本文档被删除)实际上只是在<code>.del</code>文件中被标记删除。一个被标记删除的文档仍然可以被查询匹配到，但它会在最终结果被返回前从结果集中移除(在后续操作中被标记删除的文档最终会被系统移除)</li>
+</ul>
+<h4 id="4-近实时搜索"><a href="#4-近实时搜索" class="headerlink" title="4. 近实时搜索"></a>4. 近实时搜索</h4><ul>
+<li>新文档在几分钟之内即可被检索，但这样还是不够快，磁盘在这里成为了瓶颈，我们需要的是一个更轻量的方式来使一个文档可被搜索</li>
+<li>在Elasticsearch和磁盘之间是文件系统缓存。在内存索引缓冲区(在内存缓冲区中包含了新文档的Lucene索引)中的文档会被写入到一个新的段中(缓冲区的内容已经被写入一个可被搜索的段中，但还没有进行提交)</li>
+<li>新段会被先写入到文件系统缓存(这一步代价会比较低)，稍后再被刷新到磁盘(​这一步代价比较高)。不过只要文件已经在缓存中，就可以像其它文件一样被打开和读取了</li>
+<li>在Elasticsearch中，写入和打开一个新段的轻量的过程叫做<code>refresh</code>。默认情况下每个分片会每秒自动刷新一次。这就是为什么我们说Elasticsearch是近实时搜索(文档的变化并不是立即对搜索可见，但会在一秒之内变为可见)</li>
+<li>尽管刷新是比提交轻量很多的操作，它还是会有性能开销。当写测试的时候，手动刷新很有用，但是不要在生产环境下每次索引一个文档都去手动刷新。相反，你的应用需要意识到Elasticsearch的近实时的性质，并接受它的不足</li>
+</ul>
+<ol>
+<li><p>手动刷新所有的索引 <code>POST /_refresh</code></p>
+</li>
+<li><p>手动刷新<code>blogs</code>索引 <code>POST /blogs/_refresh</code></p>
+</li>
+<li><p>设置自动刷新的时间间隔(<code>refresh_interval</code>需要一个持续时间值，例如<code>1s</code>或<code>2m</code>。一个绝对值<code>1</code>表示的是1毫秒，无疑会使你的集群陷入瘫痪)  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PUT /my_logs</span><br><span class="line">&#123;</span><br><span class="line">  &quot;settings&quot;: &#123;</span><br><span class="line">    &quot;refresh_interval&quot;: &quot;30s&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭自动刷新(在生产环境中，当你正在建立一个大的新索引时，可以先关闭自动刷新，待开始使用该索引时，再把它们调回来)  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PUT /my_logs/_settings</span><br><span class="line">&#123; &quot;refresh_interval&quot;: -1 &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="5-持久化变更"><a href="#5-持久化变更" class="headerlink" title="5. 持久化变更"></a>5. 持久化变更</h4><ul>
+<li>如果没有用fsync把数据从文件系统缓存刷(flush)到硬盘，我们不能保证数据在断电甚至是程序正常退出之后依然存在。为了保证Elasticsearch的可靠性，需要确保数据变化被持久化到磁盘</li>
+<li>即使通过每秒刷新(refresh)实现了近实时搜索，我们仍然需要经常进行完整提交来确保能从失败中恢复。我们也不希望丢失掉两次提交之间发生变化的文档数据</li>
+<li>Elasticsearch增加了一个translog，或者叫事务日志，在每一次对Elasticsearch进行操作时均进行了日志记录。通过translog，整个流程看起来是下面这样：</li>
+</ul>
+<ol>
+<li>一个文档被索引之后，就会被添加到内存缓冲区，并且追加到了translog</li>
+<li>刷新(refresh)使分片处于刷新(refresh)完成后，缓存被清空，但是事务日志不会</li>
+<li>这个进程继续工作，更多的文档被添加到内存缓冲区和追加到事务日志</li>
+<li>分片每30分钟被自动刷新(flush)，或者在translog太大的时候也会刷新。一个新的translog被创建，并且一个全量提交被执行</li>
+</ol>
+<ul>
+<li>translog提供所有还没有被刷到磁盘的操作的一个持久化纪录。当Elasticsearch启动的时候，它会从磁盘中使用最后一个提交点去恢复已知的段，并且会重放translog中所有在最后一次提交后发生的变更操作</li>
+<li>translog也被用来提供实时CRUD。当你试着通过ID查询、更新、删除一个文档，它会在尝试从相应的段中检索之前，首先检查translog任何最近的变更。这意味着它总是能够实时地获取到文档的最新版本</li>
+</ul>
+<ol>
+<li>手动刷新<code>blogs</code>索引 <code>POST /blogs/_flush</code></li>
+<li>手动刷新所有索引，并在其完成后返回结果 <code>POST /_flush?wait_for_ongoing</code></li>
+<li>设置translog的fsync间隔(提升一些性能，但是有丢失几秒数据的风险)(默认每次写请求完成后都fsync，默认参数<code>&quot;index.translog.durability&quot;: &quot;request&quot;</code>)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT /my_index/_settings</span><br><span class="line">&#123;</span><br><span class="line">  &quot;index.translog.durability&quot;: &quot;async&quot;,</span><br><span class="line">  &quot;index.translog.sync_interval&quot;: &quot;5s&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="6-段合并"><a href="#6-段合并" class="headerlink" title="6. 段合并"></a>6. 段合并</h4><ul>
+<li>由于自动刷新流程每秒会创建一个新的段，这样会导致短时间内的段数量暴增。而段数目太多会带来较大的麻烦(每一个段都会消耗文件句柄、内存和cpu运行周期)，每个搜索请求都必须轮流检查每个段，段越多，搜索也就越慢</li>
+<li>Elasticsearch通过在后台进行段合并来解决这个问题。小的段被合并到大的段，然后这些大的段再被合并到更大的段。段合并的时候会将那些旧的已删除文档从文件系统中清除。被删除的文档(或被更新文档的旧版本)不会被拷贝到新的大段中</li>
+<li>启动段合并不需要你做任何事，进行索引和搜索时会自动进行。合并大的段需要消耗大量的I/O和CPU资源，如果任其发展会影响搜索性能。Elasticsearch在默认情况下会对合并流程进行资源限制，所以搜索仍然有足够的资源很好地执行</li>
+<li>手动合并索引为一个段(可能会消耗很多资源使节点不能正常使用) <code>POST /logstash-2014-10/_optimize?max_num_segments=1</code></li>
+</ul>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="黄渡 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="黄渡 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    黄渡
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://huangdu94.club/笔记/database/elasticsearch/elasticsearch笔记（三）/" title="Elasticsearch笔记（三）">https://huangdu94.club/笔记/database/elasticsearch/elasticsearch笔记（三）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/elasticsearch/" rel="tag"># elasticsearch</a>
+          
+            <a href="/tags/非关系型数据库/" rel="tag"># 非关系型数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/笔记/database/elasticsearch/elasticsearch笔记（二）/" rel="next" title="Elasticsearch笔记（二）">
+                <i class="fa fa-chevron-left"></i> Elasticsearch笔记（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -356,6 +706,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -376,8 +733,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -484,6 +850,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Elasticsearch笔记（三）"><span class="nav-text">Elasticsearch笔记（三）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#十、分片内部原理"><span class="nav-text">十、分片内部原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-使文本可被搜索"><span class="nav-text">1. 使文本可被搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-不变性"><span class="nav-text">2. 不变性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-动态更新索引"><span class="nav-text">3. 动态更新索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-近实时搜索"><span class="nav-text">4. 近实时搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-持久化变更"><span class="nav-text">5. 持久化变更</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-段合并"><span class="nav-text">6. 段合并</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -725,6 +1107,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
