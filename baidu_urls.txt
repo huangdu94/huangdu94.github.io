@@ -1,3 +1,4 @@
+https://huangdu94.club/笔记/database/elasticsearch/elasticsearch笔记（四）/
 https://huangdu94.club/笔记/database/elasticsearch/elasticsearch笔记（三）/
 https://huangdu94.club/笔记/database/elasticsearch/elasticsearch笔记（二）/
 https://huangdu94.club/笔记/database/elasticsearch/elasticsearch笔记（一）/
@@ -7,4 +8,3 @@ https://huangdu94.club/笔记/java/常用API/5-java笔记之常用API篇/
 https://huangdu94.club/笔记/java/反射机制/4-java笔记之反射机制篇/
 https://huangdu94.club/笔记/java/多线程/3-java笔记之多线程篇/
 https://huangdu94.club/笔记/java/面向对象/2-java笔记之面向对象篇/
-https://huangdu94.club/笔记/OS/linux/shell脚本/linux笔记之shell脚本篇/
