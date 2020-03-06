@@ -587,23 +587,23 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT document</span><br><span class="line">FROM   products</span><br><span class="line">WHERE  price BETWEEN 20 AND 40</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Elasticsearch的查询表达式(query DSL)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">GET /my_store/products/_search</span><br><span class="line">&#123;</span><br><span class="line">     &quot;query&quot; : &#123;</span><br><span class="line">       &quot;constant_score&quot; : &#123;</span><br><span class="line">         &quot;filter&quot; : &#123;</span><br><span class="line">           &quot;range&quot; : &#123;</span><br><span class="line">             &quot;price&quot; : &#123;</span><br><span class="line">               &quot;gte&quot; : 20,</span><br><span class="line">               &quot;lt&quot;  : 40</span><br><span class="line">             &#125;</span><br><span class="line">           &#125;</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">GET /my_store/products/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;constant_score&quot; : &#123;</span><br><span class="line">      &quot;filter&quot; : &#123;</span><br><span class="line">        &quot;range&quot; : &#123;</span><br><span class="line">          &quot;price&quot; : &#123;</span><br><span class="line">            &quot;gte&quot; : 20,</span><br><span class="line">            &quot;lt&quot;  : 40</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>如果想要范围无界(比方说大于20)，只须省略其中一边的限制</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;range&quot; : &#123;</span><br><span class="line">     &quot;price&quot; : &#123;</span><br><span class="line">       &quot;gt&quot; : 20</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;range&quot; : &#123;</span><br><span class="line">  &quot;price&quot; : &#123;</span><br><span class="line">    &quot;gt&quot; : 20</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 <li><p>日期范围</p>
 <ul>
 <li><p><code>range</code>查询同样可以应用在日期字段上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;range&quot; : &#123;</span><br><span class="line">     &quot;timestamp&quot; : &#123;</span><br><span class="line">       &quot;gt&quot; : &quot;2014-01-01 00:00:00&quot;,</span><br><span class="line">       &quot;lt&quot; : &quot;2014-01-07 00:00:00&quot;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;range&quot; : &#123;</span><br><span class="line">  &quot;timestamp&quot; : &#123;</span><br><span class="line">    &quot;gt&quot; : &quot;2014-01-01 00:00:00&quot;,</span><br><span class="line">    &quot;lt&quot; : &quot;2014-01-07 00:00:00&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>range</code>查询支持对日期计算(date math)进行操作(例：查找时间戳在过去一小时内的所有文档)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;range&quot; : &#123;</span><br><span class="line">	&quot;timestamp&quot; : &#123;</span><br><span class="line">		&quot;gt&quot; : &quot;now-1h&quot;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;range&quot; : &#123;</span><br><span class="line">    &quot;timestamp&quot; : &#123;</span><br><span class="line">        &quot;gt&quot; : &quot;now-1h&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>日期计算还可以被应用到某个具体的时间，并非只能是一个像<code>now</code>这样的占位符(只要在某个日期后加上一个双管符号<code>||</code>)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;range&quot; : &#123;</span><br><span class="line">	&quot;timestamp&quot; : &#123;</span><br><span class="line">		&quot;gt&quot; : &quot;2014-01-01 00:00:00&quot;,</span><br><span class="line">		&quot;lt&quot; : &quot;2014-01-01 00:00:00||+1M&quot;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;range&quot; : &#123;</span><br><span class="line">    &quot;timestamp&quot; : &#123;</span><br><span class="line">        &quot;gt&quot; : &quot;2014-01-01 00:00:00&quot;,</span><br><span class="line">        &quot;lt&quot; : &quot;2014-01-01 00:00:00||+1M&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -614,7 +614,7 @@
 <li><p>在倒排索引中的词项就是采取字典顺序排列的，例：<code>5,50,6,B,C,a,ab,abb,abc,b</code></p>
 </li>
 <li><p>查找从a到b(不包含)的字符串</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;range&quot; : &#123;</span><br><span class="line">	&quot;title&quot; : &#123;</span><br><span class="line">		&quot;gte&quot; : &quot;a&quot;,</span><br><span class="line">		&quot;lt&quot; :  &quot;b&quot;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;range&quot; : &#123;</span><br><span class="line">    &quot;title&quot; : &#123;</span><br><span class="line">        &quot;gte&quot; : &quot;a&quot;,</span><br><span class="line">        &quot;lt&quot; :  &quot;b&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>数字和日期字段的索引方式使高效地范围计算成为可能。但字符串却并非如此，要想对其使用范围过滤，Elasticsearch实际上是在为范围内的每个词项都执行<code>term</code>过滤器，这会比日期或数字的范围过滤慢许多</p>
 </li>
@@ -654,7 +654,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT tags</span><br><span class="line">FROM   posts</span><br><span class="line">WHERE  tags IS NOT NULL</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Elasticsearch的查询表达式(query DSL)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GET /my_index/posts/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">	&quot;constant_score&quot; : &#123;</span><br><span class="line">	  &quot;filter&quot; : &#123;</span><br><span class="line">		&quot;exists&quot; : &#123; &quot;field&quot; : &quot;tags&quot; &#125;</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GET /my_index/posts/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;constant_score&quot; : &#123;</span><br><span class="line">      &quot;filter&quot; : &#123;</span><br><span class="line">        &quot;exists&quot; : &#123; &quot;field&quot; : &quot;tags&quot; &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -664,14 +664,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT tags</span><br><span class="line">FROM   posts</span><br><span class="line">WHERE  tags IS NULL</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Elasticsearch的查询表达式(query DSL)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GET /my_index/posts/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">	&quot;constant_score&quot; : &#123;</span><br><span class="line">	  &quot;filter&quot;: &#123;</span><br><span class="line">		&quot;missing&quot; : &#123; &quot;field&quot; : &quot;tags&quot; &#125;</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GET /my_index/posts/_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot; : &#123;</span><br><span class="line">    &quot;constant_score&quot; : &#123;</span><br><span class="line">      &quot;filter&quot;: &#123;</span><br><span class="line">        &quot;missing&quot; : &#123; &quot;field&quot; : &quot;tags&quot; &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 <li><p>对象上的存在与缺失</p>
 <ul>
 <li><p>不仅可以过滤核心类型，<code>exists</code>和<code>missing</code>查询还可以处理一个对象的内部字段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot; : &#123;</span><br><span class="line">	&quot;first&quot; : &quot;John&quot;,</span><br><span class="line">	&quot;last&quot; :  &quot;Smith&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot; : &#123;</span><br><span class="line">    &quot;first&quot; : &quot;John&quot;,</span><br><span class="line">    &quot;last&quot; :  &quot;Smith&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在映射中，如上对象的内部是个扁平的字段与值(field-value)的简单键值结构</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name.first&quot; : &quot;John&quot;,</span><br><span class="line">  &quot;name.last&quot;  : &quot;Smith&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -680,7 +680,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;exists&quot; : &#123; &quot;field&quot; : &quot;name&quot; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>实际执行的是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;bool&quot;: &#123;</span><br><span class="line">	&quot;should&quot;: [</span><br><span class="line">	  &#123; &quot;exists&quot;: &#123; &quot;field&quot;: &quot;name.first&quot; &#125;&#125;,</span><br><span class="line">	  &#123; &quot;exists&quot;: &#123; &quot;field&quot;: &quot;name.last&quot; &#125;&#125;</span><br><span class="line">	]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;bool&quot;: &#123;</span><br><span class="line">    &quot;should&quot;: [</span><br><span class="line">      &#123; &quot;exists&quot;: &#123; &quot;field&quot;: &quot;name.first&quot; &#125;&#125;,</span><br><span class="line">      &#123; &quot;exists&quot;: &#123; &quot;field&quot;: &quot;name.last&quot; &#125;&#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -694,7 +694,7 @@
 <li>它必须与普通值不一样，这可以避免把实际值当成<code>null</code>空的情况</li>
 </ol>
 </li>
-<li>例：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PUT /my_index/_mapping/my_type</span><br><span class="line">&#123;</span><br><span class="line">     &quot;properties&quot;: &#123;</span><br><span class="line">       &quot;status_code&quot;: &#123;</span><br><span class="line">         &quot;type&quot;: &quot;string&quot;,</span><br><span class="line">         &quot;null_value&quot;: &quot;NULL&quot;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<li>例：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PUT /my_index/_mapping/my_type</span><br><span class="line">&#123;</span><br><span class="line">  &quot;properties&quot;: &#123;</span><br><span class="line">    &quot;status_code&quot;: &#123;</span><br><span class="line">      &quot;type&quot;: &quot;string&quot;,</span><br><span class="line">      &quot;null_value&quot;: &quot;NULL&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 </li>
@@ -963,6 +963,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/笔记/database/elasticsearch/elasticsearch笔记（五）/" rel="prev" title="Elasticsearch笔记（五）">
+                Elasticsearch笔记（五） <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -1081,7 +1085,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1222,7 +1226,7 @@
     
       <span class="post-meta-item-text">网站字数统计&#58;</span>
     
-    <span title="网站字数统计">46.4k 字</span>
+    <span title="网站字数统计">53.5k 字</span>
   
 </div>
 
